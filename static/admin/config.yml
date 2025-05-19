@@ -17,13 +17,13 @@ collections:
       - { name: "draft", label: "Concept", widget: "boolean", default: true }
       - { name: "tags", label: "Tags", widget: "list", default: [] }
       - { name: "summary", label: "Samenvatting", widget: "text" }
-      - label: "Cover"
+      - label: "Omslag"
         name: "cover"
         widget: "object"
         required: false
         fields:
-          - { name: "image", label: "Afbeelding", widget: "image" }
-          - { name: "alt", label: "Alt Text", widget: "string" }
+          - { name: "image", label: "Afbeelding", widget: "image", required: false }
+          - { name: "alt", label: "Alt Text", widget: "string", required: false  }
           - { name: "hiddenInList", label: "Verbergen in Lijstweergave", widget: "boolean", default: false }
       - { name: "ShowToc", label: "Toon Inhoudsopgave", widget: "boolean", default: true }
       - { name: "body", label: "Body", widget: "markdown" }
