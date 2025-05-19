@@ -23,7 +23,6 @@ collections:
         fields:
           - { name: "image", label: "Afbeelding", widget: "image" }
           - { name: "alt", label: "Alt Text", widget: "string" }
-          - { name: "relative", widget: "hidden", default: true }
           - { name: "hiddenInList", label: "Verbergen in Lijstweergave", widget: "boolean", default: false }
       - { name: "ShowToc", label: "Toon Inhoudsopgave", widget: "boolean", default: true }
       - { name: "body", label: "Body", widget: "markdown" }
