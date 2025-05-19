@@ -63,7 +63,7 @@ hr {
     height: 10rem;
 }
 
-.entry-header {
+.home-info .entry-header {
     display: flex !important;
     flex-wrap: wrap;
     flex-direction: row;
@@ -73,7 +73,7 @@ hr {
     margin: 2rem 0;
 }
 
-.entry-header h1 {
+.home-info .entry-header h1 {
     margin: auto 0;
     font-size: 4rem !important;
     border-bottom: .4rem solid var(--primary);
