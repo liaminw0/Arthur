@@ -5,6 +5,10 @@ title: art-hov.blog
 theme: ["PaperMod"]
 
 params:
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
   DateFormat: "January 2, 2006 15:04"
   homeInfoParams:
     Title: art-hov

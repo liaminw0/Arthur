@@ -39,7 +39,7 @@
 
 
 .post-entry {
-    border: none;
+    border-color: var(--entry);
 }
 
 hr {
@@ -55,9 +55,27 @@ hr {
 }
 
 .logo-home{
-    background-image: url(https://fakeimg.pl/200x200?text=logo);
+    float: left;
+    background-image: url('/art-hov_logo.png');
     background-size: cover;
     background-position: center;
-    width: 6rem;
-    height: 6rem;
+    width: 10rem;
+    height: 10rem;
+}
+
+.entry-header {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.entry-header h1 {
+    margin: auto 0;
+    font-size: 4rem !important;
+    border-bottom: .4rem solid var(--primary);
+
 }
