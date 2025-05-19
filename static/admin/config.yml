@@ -20,6 +20,7 @@ collections:
       - label: "Cover"
         name: "cover"
         widget: "object"
+        required: false
         fields:
           - { name: "image", label: "Afbeelding", widget: "image" }
           - { name: "alt", label: "Alt Text", widget: "string" }
