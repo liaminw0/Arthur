@@ -5,8 +5,6 @@ backend:
 media_folder: "static/uploads"
 public_folder: "/uploads"
 
-preview_styles: "static/preview.css"
-
 collections:
   - name: "snippets"
     label: "Snippets"
