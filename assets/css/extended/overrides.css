@@ -40,6 +40,7 @@
 
 .post-entry {
     border-color: var(--code-block-bg);
+    background-color: var(--theme);
 }
 
 hr {
