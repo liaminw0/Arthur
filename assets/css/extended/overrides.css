@@ -53,3 +53,11 @@ hr {
     background-color: var(--secondary);
     color: var(--entry);
 }
+
+.logo-home{
+    background-image: url(https://fakeimg.pl/200x200?text=logo);
+    background-size: cover;
+    background-position: center;
+    width: 6rem;
+    height: 6rem;
+}

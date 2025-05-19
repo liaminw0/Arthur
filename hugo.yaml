@@ -5,16 +5,17 @@ title: art-hov.blog
 theme: ["PaperMod"]
 
 params:
-  colorScheme: "pink"
   homeInfoParams:
     Title: art-hov
     Content: lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus, congue vel laoreet ac, dictum vitae odio.
 
   socialIcons: # optional
-    - name: "<platform>"
+    - name: "buymeacoffee"
       url: "<link>"
-    - name: "<platform 2>"
+    - name: "x"
       url: "<link2>"
+    - name: "rss"
+      url: "index.xml"
 outputs:
   home:
     - HTML
