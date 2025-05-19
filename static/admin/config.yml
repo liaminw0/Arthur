@@ -5,6 +5,8 @@ backend:
 media_folder: "static/uploads"
 public_folder: "/uploads"
 
+preview_styles: "static/preview.css"
+
 collections:
   - name: "snippets"
     label: "Snippets"
@@ -23,7 +25,6 @@ collections:
         fields:
           - { name: "image", label: "Image", widget: "image" }
           - { name: "alt", label: "Alt Text", widget: "string" }
-          - { name: "caption", label: "Caption", widget: "string" }
           - { name: "relative", widget: "hidden", default: true }
           - { name: "hiddenInList", label: "Hide in List View", widget: "boolean", default: false }
       - { name: "ShowToc", label: "Show Table of Contents", widget: "boolean", default: true }
