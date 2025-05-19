@@ -79,3 +79,9 @@ hr {
     border-bottom: .4rem solid var(--primary);
 
 }
+
+.post-content img {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%)
+}
