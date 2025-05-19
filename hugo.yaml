@@ -17,6 +17,9 @@ params:
       url: "<link2>"
     - name: "rss"
       url: "index.xml"
+  cover:
+    hiddenInSingle: true # hide on single page
+
 outputs:
   home:
     - HTML

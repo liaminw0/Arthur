@@ -12,6 +12,6 @@ cover:
   image: /uploads/selection_002.png
   alt: Face
   caption: test if this works
+  hiddenInList: true
 ShowToc: true
 ---
-lorem
