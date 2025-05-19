@@ -12,18 +12,18 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "date", label: "Date", widget: "datetime" }
-      - { name: "draft", label: "Draft", widget: "boolean", default: true }
+      - { name: "title", label: "Titel", widget: "string" }
+      - { name: "date", label: "Datum", widget: "datetime" }
+      - { name: "draft", label: "Concept", widget: "boolean", default: true }
       - { name: "tags", label: "Tags", widget: "list", default: [] }
-      - { name: "summary", label: "Summary", widget: "text" }
+      - { name: "summary", label: "Sub Titel", widget: "text" }
       - label: "Cover"
         name: "cover"
         widget: "object"
         fields:
-          - { name: "image", label: "Image", widget: "image" }
+          - { name: "image", label: "Afbeelding", widget: "image" }
           - { name: "alt", label: "Alt Text", widget: "string" }
           - { name: "relative", widget: "hidden", default: true }
-          - { name: "hiddenInList", label: "Hide in List View", widget: "boolean", default: false }
-      - { name: "ShowToc", label: "Show Table of Contents", widget: "boolean", default: true }
+          - { name: "hiddenInList", label: "Verbergen in Lijstweergave", widget: "boolean", default: false }
+      - { name: "ShowToc", label: "Toon Inhoudsopgave", widget: "boolean", default: true }
       - { name: "body", label: "Body", widget: "markdown" }
