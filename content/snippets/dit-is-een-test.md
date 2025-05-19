@@ -5,7 +5,6 @@ draft: false
 tags:
   - ethiek
   - filosofie
-categories: []
 summary: summary
 cover:
   relative: true
