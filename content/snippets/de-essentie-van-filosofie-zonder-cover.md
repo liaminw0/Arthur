@@ -19,7 +19,7 @@ categories:
 ---
 # De Essentie van Filosofie
 
-Filosofie is in essentie het streven naar wijsheid en begrip. Het daagt ons uit om vragen te stellen over de aard van de realiteit, het bestaan en onze plek daarin.
+Filosofie is in essentie het streven naar wijsheid en begrip. Het daagt ons uit om vragen te stellen over de aard van de realiteit, het bestaan en onze plek daarin!
 
 ## Belangrijke Takken van Filosofie
 
