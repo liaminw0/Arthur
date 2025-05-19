@@ -11,7 +11,6 @@ collections:
     folder: "content/snippets"
     create: true
     slug: "{{slug}}"
-    preview_path: "snippets/{{slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "date", label: "Date", widget: "datetime" }
