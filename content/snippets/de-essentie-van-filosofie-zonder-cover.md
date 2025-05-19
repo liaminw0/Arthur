@@ -9,7 +9,7 @@ tags:
 summary: Een verkenning van de fundamentele aard van filosofie en de impact
   ervan op het menselijk begrip.
 cover:
-  image: /uploads/foto.jpg
+  image: ""
   alt: Een peinzende denker
   caption: Foto door [Unsplash](https://unsplash.com/@thoughtcatalog)
   hiddenInList: true
