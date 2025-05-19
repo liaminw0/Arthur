@@ -16,7 +16,7 @@ collections:
       - { name: "date", label: "Datum", widget: "datetime" }
       - { name: "draft", label: "Concept", widget: "boolean", default: true }
       - { name: "tags", label: "Tags", widget: "list", default: [] }
-      - { name: "summary", label: "Sub Titel", widget: "text" }
+      - { name: "summary", label: "Samenvatting", widget: "text" }
       - label: "Cover"
         name: "cover"
         widget: "object"
