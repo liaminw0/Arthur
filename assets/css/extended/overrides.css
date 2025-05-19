@@ -15,6 +15,7 @@
     --code-block-bg: rgb(28, 29, 33);
     --code-bg: rgb(255, 218, 3);
     --border: rgb(119, 102, 8);
+    --bg-li: rgb(255, 236, 126);
 }
 
 .dark {
@@ -27,6 +28,7 @@
     --code-block-bg: rgb(46, 46, 51);
     --code-bg: rgb(55, 56, 62);
     --border: rgb(51, 51, 51);
+    --bg-li: rgb(46, 46, 51);
 }
 
 .list {
@@ -39,8 +41,8 @@
 
 
 .post-entry {
-    border-color: var(--code-block-bg);
-    background-color: var(--theme);
+    border-color: var(--primary);
+    background-color: var(--bg-li);
 }
 
 hr {
