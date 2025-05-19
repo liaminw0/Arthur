@@ -2,24 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Ethiek on art-hov.blog</title>
-    <link>http://localhost:1313/tags/ethiek/</link>
+    <link>https://art-hov.blog/tags/ethiek/</link>
     <description>Recent content in Ethiek on art-hov.blog</description>
     <generator>Hugo -- 0.146.0</generator>
     <language>nl</language>
-    <lastBuildDate>Mon, 19 May 2025 13:57:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ethiek/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Dit is een test</title>
-      <link>http://localhost:1313/snippets/dit-is-een-test/</link>
-      <pubDate>Mon, 19 May 2025 13:57:00 +0000</pubDate>
-      <guid>http://localhost:1313/snippets/dit-is-een-test/</guid>
-      <description>summary</description>
-    </item>
+    <lastBuildDate>Mon, 19 May 2025 12:00:00 +0200</lastBuildDate>
+    <atom:link href="https://art-hov.blog/tags/ethiek/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>De Essentie van Filosofie</title>
-      <link>http://localhost:1313/snippets/test/</link>
+      <link>https://art-hov.blog/snippets/test/</link>
       <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/snippets/test/</guid>
+      <guid>https://art-hov.blog/snippets/test/</guid>
       <description>Een verkenning van de fundamentele aard van filosofie en de impact ervan op het menselijk begrip.</description>
     </item>
   </channel>

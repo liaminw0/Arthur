@@ -39,7 +39,7 @@
 
 
 .post-entry {
-    border-color: var(--entry);
+    border-color: var(--code-block-bg);
 }
 
 hr {
