@@ -2,35 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://art-hov.blog/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://art-hov.blog/categories/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/test/</loc>
+    <loc>https://art-hov.blog/posts/test/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ethiek/</loc>
+    <loc>https://art-hov.blog/tags/ethiek/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/existentialisme/</loc>
+    <loc>https://art-hov.blog/tags/existentialisme/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/filosofie/</loc>
+    <loc>https://art-hov.blog/tags/filosofie/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/gedachten/</loc>
+    <loc>https://art-hov.blog/categories/gedachten/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://art-hov.blog/posts/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://art-hov.blog/tags/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archief/</loc>
+    <loc>https://art-hov.blog/archief/</loc>
   </url><url>
-    <loc>http://localhost:1313/zoeken/</loc>
+    <loc>https://art-hov.blog/zoeken/</loc>
   </url>
 </urlset>
