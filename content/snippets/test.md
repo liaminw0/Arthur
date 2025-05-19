@@ -1,15 +1,21 @@
 ---
-title: "De Essentie van Filosofie"
+title: De Essentie van Filosofie
 date: 2025-05-19T12:00:00+02:00
 draft: false
-tags: ["filosofie", "ethiek", "existentialisme"]
-categories: ["gedachten"]
-summary: "Een verkenning van de fundamentele aard van filosofie en de impact ervan op het menselijk begrip."
+tags:
+  - filosofie
+  - ethiek
+  - existentialisme
+summary: Een verkenning van de fundamentele aard van filosofie en de impact
+  ervan op het menselijk begrip.
 cover:
-  image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
-  alt: "Een peinzende denker"
-  caption: "Foto door [Unsplash](https://unsplash.com/@thoughtcatalog)"
+  image: /uploads/foto.jpg
+  alt: Een peinzende denker
+  caption: Foto door [Unsplash](https://unsplash.com/@thoughtcatalog)
+  hiddenInList: false
 ShowToc: true
+categories:
+  - gedachten
 ---
 
 # De Essentie van Filosofie
