@@ -7,9 +7,10 @@ tags:
   - filosofie
 summary: summary
 cover:
-  image: /uploads/selection_002.png
+  image: ""
   alt: Face
   caption: test if this works
   hiddenInList: true
 ShowToc: true
 ---
+helllo
