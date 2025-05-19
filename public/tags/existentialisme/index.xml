@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Existentialisme on art-hov.blog</title>
+    <link>http://localhost:1313/tags/existentialisme/</link>
+    <description>Recent content in Existentialisme on art-hov.blog</description>
+    <generator>Hugo -- 0.146.0</generator>
+    <language>nl</language>
+    <lastBuildDate>Mon, 19 May 2025 12:00:00 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/existentialisme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>De Essentie van Filosofie</title>
+      <link>http://localhost:1313/posts/test/</link>
+      <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/posts/test/</guid>
+      <description>Een verkenning van de fundamentele aard van filosofie en de impact ervan op het menselijk begrip.</description>
+    </item>
+  </channel>
+</rss>

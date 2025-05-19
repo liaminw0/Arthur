@@ -1,4 +1,36 @@
-baseURL: https://example.org/
-languageCode: en-us
-title: My New Hugo Site
+baseURL: https://art-hov.blog/
+languageCode: "nl"
+defaultContentLanguage: "nl"
+title: art-hov.blog 
 theme: ["PaperMod"]
+
+params:
+  colorScheme: "pink"
+  homeInfoParams:
+    Title: art-hov
+    Content: lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus, congue vel laoreet ac, dictum vitae odio.
+
+  socialIcons: # optional
+    - name: "<platform>"
+      url: "<link>"
+    - name: "<platform 2>"
+      url: "<link2>"
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+menu:
+  main:
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: search
+      name: Zoeken
+      url: /zoeken/
+      weight: 30
+    - identifier: archive
+      name: Archief
+      url: /archief/
+      weight: 30
