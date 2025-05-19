@@ -14,6 +14,9 @@ body {
   }
   .frame-content img {
     max-width: 100%;
+    position: relative; /* or absolute */
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   a {

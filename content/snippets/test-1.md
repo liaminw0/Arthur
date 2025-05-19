@@ -6,7 +6,6 @@ tags:
   - love
 summary: dit is een test om te kijken of dit werkt
 cover:
-  relative: true
   hiddenInList: false
   image: /uploads/foto.jpg
   alt: foto with friends

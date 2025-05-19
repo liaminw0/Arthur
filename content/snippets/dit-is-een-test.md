@@ -7,7 +7,6 @@ tags:
   - filosofie
 summary: summary
 cover:
-  relative: true
   image: /uploads/selection_002.png
   alt: Face
   caption: test if this works

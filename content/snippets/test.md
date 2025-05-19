@@ -9,7 +9,6 @@ cover:
   image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
   alt: "Een peinzende denker"
   caption: "Foto door [Unsplash](https://unsplash.com/@thoughtcatalog)"
-  relative: true
 ShowToc: true
 ---
 
