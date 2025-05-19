@@ -17,12 +17,13 @@ ShowToc: true
 categories:
   - gedachten
 ---
-
 # De Essentie van Filosofie
 
 Filosofie is in essentie het streven naar wijsheid en begrip. Het daagt ons uit om vragen te stellen over de aard van de realiteit, het bestaan en onze plek daarin.
 
 ## Belangrijke Takken van Filosofie
+
+![](/uploads/selection_002.png "de liefde")
 
 1. **Metafysica**: Verkent de fundamentele aard van de werkelijkheid en het zijn.  
 2. **Epistemologie**: Onderzoekt de aard en reikwijdte van kennis.  
@@ -38,9 +39,9 @@ In de snel veranderende wereld van vandaag biedt filosofie een kader voor kritis
 
 ### Verdere Lezing
 
-- [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/)  
-- [Internet Encyclopedia of Philosophy](https://www.iep.utm.edu/)  
+* [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/)  
+* [Internet Encyclopedia of Philosophy](https://www.iep.utm.edu/)  
 
----
+- - -
 
 **Opmerking**: Deze template bevat een omslagfoto van Unsplash, die publiekelijk beschikbaar en gratis te gebruiken is. Vervang de afbeelding-URL gerust door een die beter bij je inhoud past.
