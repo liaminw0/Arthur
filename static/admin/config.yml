@@ -1,18 +1,30 @@
 backend:
   name: git-gateway
-  branch: master # Branch to update (optional; defaults to master)
-media_folder: static/img
-public_folder: /img
+  branch: master  # or your default branch
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
 collections:
-  - name: 'snippets'
-    label: 'Snippets'
-    folder: 'content/snippets'
+  - name: "snippets"
+    label: "Snippets"
+    folder: "content/snippets"
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    editor:
-      preview: false
+    slug: "{{slug}}"
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "draft", label: "Draft", widget: "boolean", default: true }
+      - { name: "tags", label: "Tags", widget: "list", default: [] }
+      - { name: "categories", label: "Categories", widget: "list", default: [] }
+      - { name: "summary", label: "Summary", widget: "text" }
+      - label: "Cover"
+        name: "cover"
+        widget: "object"
+        fields:
+          - { name: "image", label: "Image", widget: "image" }
+          - { name: "alt", label: "Alt Text", widget: "string" }
+          - { name: "caption", label: "Caption", widget: "string" }
+          - { name: "relative", label: "Relative Path", widget: "boolean", default: true }
+      - { name: "ShowToc", label: "Show Table of Contents", widget: "boolean", default: true }
+      - { name: "body", label: "Body", widget: "markdown" }

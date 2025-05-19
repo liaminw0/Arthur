@@ -5,6 +5,7 @@ title: art-hov.blog
 theme: ["PaperMod"]
 
 params:
+  DateFormat: "January 2, 2006 15:04"
   homeInfoParams:
     Title: art-hov
     Content: lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus, congue vel laoreet ac, dictum vitae odio.
