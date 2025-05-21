@@ -34,6 +34,6 @@ collections:
         label: "Homepage Content"
         name: "homepage"
         fields:
-          - { name: "title", widget: "string" }
+          - { label: "Ritel" name: "titel", widget: "string" }
           - { label: "Logo", name: "logo", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Introductie", name: "introductie", widget: "markdown" }
