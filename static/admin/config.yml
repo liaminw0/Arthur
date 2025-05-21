@@ -34,6 +34,6 @@ collections:
         label: "Homepage Content"
         name: "homepage"
         fields:
-          - { label: "Titel", name: "title", widget: "string" }
+          - { name: "title", widget: "string" }
           - { label: "Logo", name: "logo", widget: "image", required: false }
           - { label: "Body", name: "body", widget: "markdown" }
