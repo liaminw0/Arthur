@@ -19,23 +19,27 @@
           var entry = this.props.entry;
           var title = entry.getIn(['data', 'title']);
           var logo = entry.getIn(['data', 'logo']);
-          var body = this.props.widgetFor('body');  // This returns a React element
+          var body = this.props.widgetFor('body'); // React element
           var logoURL = this.props.getAsset(logo);
     
-          return h('div', { className: 'container' },
-            h('div', { className: 'heading' },
-              h('div', {
-                className: 'logo',
-                style: { backgroundImage: 'url(' + logoURL + ')' }
-              }),
-              h('h1', {}, title)
-            ),
-            h('div', {}, body)
+          return h('div', { className: 'homepage-preview' }, // outer wrapper
+            h('div', { className: 'container' },
+              h('div', { className: 'heading' },
+                h('div', {
+                  className: 'logo',
+                  style: { backgroundImage: 'url(' + logoURL + ')' }
+                }),
+                h('h1', {}, title)
+              ),
+              h('div', {}, body)
+            )
           );
         }
       });
+    
       CMS.registerPreviewTemplate('homepage', HomepagePreview);
     </script>
+    
     
   </body>
 </html>
