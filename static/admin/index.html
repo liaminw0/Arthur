@@ -19,7 +19,7 @@
           var entry = this.props.entry;
           var title = entry.getIn(['data', 'title']);
           var logo = entry.getIn(['data', 'logo']);
-          var body = this.props.widgetFor('body');  // This returns a React element
+          var body = this.props.widgetFor('body');  // Rich Markdown content
           var logoURL = this.props.getAsset(logo);
     
           return h('div', { className: 'container' },
@@ -30,13 +30,14 @@
               }),
               h('h1', {}, title)
             ),
-            h('div', {}, body)
+            h('div', { className: 'homepage-preview-body' }, body)
           );
         }
       });
     
       CMS.registerPreviewTemplate('homepage', HomepagePreview);
     </script>
+    
     
   </body>
 </html>
