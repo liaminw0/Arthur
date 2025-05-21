@@ -13,5 +13,29 @@
     <script>
       CMS.registerPreviewStyle("/admin/styles.css");
     </script>
+    <script>
+      var HomepagePreview = createClass({
+        render: function() {
+          var entry = this.props.entry;
+          var title = entry.getIn(['data', 'title']);
+          var logo = entry.getIn(['data', 'logo']);
+          var body = this.props.widgetFor('body');
+    
+          return h('div', {},
+            h('header', { className: 'entry-header' },
+              h('div', {
+                className: 'logo-home',
+                style: { backgroundImage: 'url(' + logo + ')' }
+              }),
+              h('h1', {}, title)
+            ),
+            h('div', { className: 'entry-content' }, body),
+            h('footer', { className: 'entry-footer' })
+          );
+        }
+      });
+    
+      CMS.registerPreviewTemplate('homepage', HomepagePreview);
+    </script>
   </body>
 </html>

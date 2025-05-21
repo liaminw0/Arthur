@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on art-hov.blog</title>
-    <link>http://localhost:38427/tags/</link>
+    <link>https://art-hov.blog/tags/</link>
     <description>Recent content in Tags on art-hov.blog</description>
     <generator>Hugo -- 0.146.0</generator>
     <language>nl</language>
     <lastBuildDate>Mon, 19 May 2025 12:00:00 +0200</lastBuildDate>
-    <atom:link href="http://localhost:38427/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://art-hov.blog/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ethiek</title>
-      <link>http://localhost:38427/tags/ethiek/</link>
+      <link>https://art-hov.blog/tags/ethiek/</link>
       <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
-      <guid>http://localhost:38427/tags/ethiek/</guid>
+      <guid>https://art-hov.blog/tags/ethiek/</guid>
       <description></description>
     </item>
     <item>
       <title>Existentialisme</title>
-      <link>http://localhost:38427/tags/existentialisme/</link>
+      <link>https://art-hov.blog/tags/existentialisme/</link>
       <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
-      <guid>http://localhost:38427/tags/existentialisme/</guid>
+      <guid>https://art-hov.blog/tags/existentialisme/</guid>
       <description></description>
     </item>
     <item>
       <title>Filosofie</title>
-      <link>http://localhost:38427/tags/filosofie/</link>
+      <link>https://art-hov.blog/tags/filosofie/</link>
       <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
-      <guid>http://localhost:38427/tags/filosofie/</guid>
+      <guid>https://art-hov.blog/tags/filosofie/</guid>
       <description></description>
     </item>
   </channel>
