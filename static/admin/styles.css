@@ -48,8 +48,8 @@ body {
   }
 
   .heading h1 {
-    font-size: 2rem;
+    font-size: 4rem;
     margin: 0;
-    padding: 0;
-    border-bottom: #1e1e1e 3px solid;
+    border-bottom: 5px solid black;
+    padding: 1rem 0;
   }
