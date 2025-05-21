@@ -34,9 +34,33 @@
           );
         }
       });
-      CMS.registerPreviewStyle("/admin/homepage.css");
       CMS.registerPreviewTemplate('homepage', HomepagePreview);
     </script>
+    <script>
+      CMS.registerPreviewTemplate('homepage', (props) => {
+        const checkAndStyleIframe = () => {
+          const iframe = document.querySelector('iframe[data-testid="preview-pane"]');
+          if (!iframe || !iframe.contentDocument) {
+            // Retry if iframe not ready
+            return setTimeout(checkAndStyleIframe, 100);
+          }
     
+          const doc = iframe.contentDocument;
+    
+          // Wait for content to load
+          const container = doc.querySelector('.container');
+          if (container) {
+            doc.body.style.backgroundColor = '#fff'; // <-- replace with valid color like '#dfdfdf'
+            doc.body.classList.add('homepage-body'); // optional class
+          } else {
+            // Retry until .container is rendered
+            setTimeout(checkAndStyleIframe, 100);
+          }
+        };
+    
+        checkAndStyleIframe();
+        return React.createElement(HomepagePreview, props);
+      });
+    </script>
   </body>
 </html>
