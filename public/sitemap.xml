@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://art-hov.blog/</loc>
+    <loc>http://localhost:40993/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/categories/</loc>
+    <loc>http://localhost:40993/categories/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/snippets/test/</loc>
+    <loc>http://localhost:40993/snippets/test/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/snippets/de-essentie-van-filosofie-zonder-cover/</loc>
+    <loc>http://localhost:40993/snippets/de-essentie-van-filosofie-zonder-cover/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/tags/ethiek/</loc>
+    <loc>http://localhost:40993/tags/ethiek/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/tags/existentialisme/</loc>
+    <loc>http://localhost:40993/tags/existentialisme/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/tags/filosofie/</loc>
+    <loc>http://localhost:40993/tags/filosofie/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/categories/gedachten/</loc>
+    <loc>http://localhost:40993/categories/gedachten/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/snippets/</loc>
+    <loc>http://localhost:40993/snippets/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/tags/</loc>
+    <loc>http://localhost:40993/tags/</loc>
     <lastmod>2025-05-19T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://art-hov.blog/archief/</loc>
+    <loc>http://localhost:40993/archief/</loc>
   </url><url>
-    <loc>https://art-hov.blog/homepage/</loc>
+    <loc>http://localhost:40993/homepage/</loc>
   </url><url>
-    <loc>https://art-hov.blog/zoeken/</loc>
+    <loc>http://localhost:40993/zoeken/</loc>
   </url>
 </urlset>

@@ -32,16 +32,19 @@ body {
   }
 
   .heading {
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 3rem;
+    font-size: 4rem;
   }
   
   .logo {
-    width: 200px;
-    width: 200px;
     background-size: cover;
     background-position: center;
+    width: 10rem;
+    height: 10rem;
   }
 
   .heading h1 {
