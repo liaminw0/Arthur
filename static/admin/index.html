@@ -20,13 +20,12 @@
           var title = entry.getIn(['data', 'title']);
           var logo = entry.getIn(['data', 'logo']);
           var body = this.props.widgetFor('body');
-          var logoURL = this.props.getAsset(logo);  // ✅ Properly resolve image URL
     
           return h('div', {},
             h('header', { className: 'entry-header' },
               h('div', {
                 className: 'logo-home',
-                style: { backgroundImage: 'url(' + logoURL + ')' }  // ✅ Use resolved URL
+                style: { backgroundImage: 'url(' + logo + ')' }
               }),
               h('h1', {}, title)
             ),
@@ -38,6 +37,5 @@
     
       CMS.registerPreviewTemplate('homepage', HomepagePreview);
     </script>
-    
   </body>
 </html>
