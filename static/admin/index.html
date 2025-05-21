@@ -15,14 +15,31 @@
     </script>
     <script>
       var HomepagePreview = createClass({
-        render: function() {
-          var entry = this.props.entry;
-          var title = entry.getIn(['data', 'title']);
-          var logo = entry.getIn(['data', 'logo']);
-          var body = this.props.widgetFor('body'); // React element
-          var logoURL = this.props.getAsset(logo);
+        componentDidMount: function () {
+          // Inject CSS manually into the preview iframe
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "/admin/homepage.css";
+          link.type = "text/css";
     
-          return h('div', { className: 'homepage-preview' }, // outer wrapper
+          // Only add it if it hasn't been added yet
+          const iframe = document.querySelector('iframe');
+          if (iframe) {
+            const iframeHead = iframe.contentDocument.head;
+            if (!iframeHead.querySelector('link[href="/admin/homepage.css"]')) {
+              iframeHead.appendChild(link);
+            }
+          }
+        },
+    
+        render: function() {
+          const entry = this.props.entry;
+          const title = entry.getIn(['data', 'title']);
+          const logo = entry.getIn(['data', 'logo']);
+          const body = this.props.widgetFor('body');
+          const logoURL = this.props.getAsset(logo);
+    
+          return h('div', { className: 'homepage-preview' },
             h('div', { className: 'container' },
               h('div', { className: 'heading' },
                 h('div', {
@@ -36,7 +53,7 @@
           );
         }
       });
-      CMS.registerPreviewStyle("/admin/homepage.css", { raw: false });   
+    
       CMS.registerPreviewTemplate('homepage', HomepagePreview);
     </script>
     
