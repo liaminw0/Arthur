@@ -23,10 +23,6 @@ body {
     color: #1e1e1e;
   }
 
-  * {
-    margin: 0;
-  }
-
   .container {
     margin: 6rem auto;
     max-width: 800px;
