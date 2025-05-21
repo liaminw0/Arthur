@@ -23,7 +23,7 @@ Filosofie is in essentie het streven naar wijsheid en begrip. Het daagt ons uit 
 
 ## Belangrijke Takken van Filosofie
 
-![](/uploads/selection_002.png "de liefde")
+![](/uploads/logo.svg "de liefde")
 
 1. **Metafysica**: Verkent de fundamentele aard van de werkelijkheid en het zijn.  
 2. **Epistemologie**: Onderzoekt de aard en reikwijdte van kennis.  
