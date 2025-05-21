@@ -1,11 +1,11 @@
-{{- with site.Params.homeInfoParams }}
+{{- with .Site.GetPage "homepage.md" }}
 <article class="first-entry home-info">
     <header class="entry-header">
-        <img loading="eager" class="logo-home"></img>
-        <h1>{{ .Title | markdownify }}</h1>
+        <div style="background-image: url('{{ .Params.logo }}');" class="logo-home"></div>
+        <h1>{{ .Title }}</h1>
     </header>
     <div class="entry-content">
-        {{ .Content | markdownify }}
+        {{ .Content}}
     </div>
     <footer class="entry-footer">
         {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}

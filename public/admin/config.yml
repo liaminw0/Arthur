@@ -27,3 +27,13 @@ collections:
           - { name: "hiddenInList", label: "Verbergen in Lijstweergave", widget: "boolean", default: false, required: false }
       - { name: "ShowToc", label: "Toon Inhoudsopgave", widget: "boolean", default: true }
       - { name: "body", label: "Body", widget: "markdown" }
+  - name: "homepage"
+    label: "Homepage"
+    files:
+      - file: "content/homepage.md"
+        label: "Homepage Content"
+        name: "homepage"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }

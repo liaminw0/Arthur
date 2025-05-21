@@ -73,7 +73,7 @@ hr {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
 }
 
 .home-info .entry-header h1 {
