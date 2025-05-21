@@ -14,32 +14,36 @@
       CMS.registerPreviewStyle("/admin/styles.css");
     </script>
     <script>
-      var HomepagePreview = createClass({
+      CMS.registerPreviewTemplate('homepage', createClass({
         componentDidMount: function () {
-          // ✅ Add class to the body of the preview iframe
-          document.body.classList.add("homepage-preview");
+          // Wait a bit to ensure iframe is rendered
+          setTimeout(() => {
+            const iframe = document.querySelector('.nc-previewPane-frame');
+            if (iframe && iframe.contentDocument && iframe.contentDocument.body) {
+              iframe.contentDocument.body.classList.add('homepage-preview');
+            }
+          }, 100); // small delay to allow iframe to mount
         },
         render: function () {
-          var entry = this.props.entry;
-          var title = entry.getIn(["data", "title"]);
-          var logo = entry.getIn(["data", "logo"]);
-          var body = this.props.widgetFor("body");
-          var logoURL = this.props.getAsset(logo);
-
-          return h("div", { className: "container" },
-            h("div", { className: "heading" },
-              h("div", {
-                className: "logo",
-                style: { backgroundImage: "url(" + logoURL + ")" }
+          const entry = this.props.entry;
+          const title = entry.getIn(['data', 'title']);
+          const logo = entry.getIn(['data', 'logo']);
+          const body = this.props.widgetFor('body');
+          const logoURL = this.props.getAsset(logo);
+    
+          return h('div', { className: 'container' },
+            h('div', { className: 'heading' },
+              h('div', {
+                className: 'logo',
+                style: { backgroundImage: `url(${logoURL})` }
               }),
-              h("h1", {}, title)
+              h('h1', {}, title)
             ),
-            h("div", {}, body)
+            h('p', {}, body)
           );
         }
-      });
-
-      CMS.registerPreviewTemplate("homepage", HomepagePreview);
+      }));
     </script>
+    
   </body>
 </html>
