@@ -6,7 +6,7 @@ body {
 .frame-content {
     font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
     line-height: 1.9rem;
-    max-width: 90%;
+    max-width: 800px;
     position: relative; /* or absolute */
     left: 50%;
     transform: translateX(-50%);
