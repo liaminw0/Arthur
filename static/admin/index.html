@@ -15,28 +15,31 @@
     </script>
     <script>
       var HomepagePreview = createClass({
-        render: function() {
+        componentDidMount: function () {
+          // ✅ Add class to the body of the preview iframe
+          document.body.classList.add("homepage-preview");
+        },
+        render: function () {
           var entry = this.props.entry;
-          var title = entry.getIn(['data', 'title']);
-          var logo = entry.getIn(['data', 'logo']);
-          var body = this.props.widgetFor('body');  // This returns a React element
+          var title = entry.getIn(["data", "title"]);
+          var logo = entry.getIn(["data", "logo"]);
+          var body = this.props.widgetFor("body");
           var logoURL = this.props.getAsset(logo);
-    
-          return h('div', { className: 'container' },
-            h('div', { className: 'heading' },
-              h('div', {
-                className: 'logo',
-                style: { backgroundImage: 'url(' + logoURL + ')' }
+
+          return h("div", { className: "container" },
+            h("div", { className: "heading" },
+              h("div", {
+                className: "logo",
+                style: { backgroundImage: "url(" + logoURL + ")" }
               }),
-              h('h1', {}, title)
+              h("h1", {}, title)
             ),
-            h('div', {}, body)
+            h("div", {}, body)
           );
         }
       });
-    
-      CMS.registerPreviewTemplate('homepage', HomepagePreview);
+
+      CMS.registerPreviewTemplate("homepage", HomepagePreview);
     </script>
-    
   </body>
 </html>
