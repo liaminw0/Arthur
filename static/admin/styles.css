@@ -24,4 +24,29 @@ body {
   }
 
 
+  .container {
+    margin: 0 auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .heading {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   
+  .logo {
+    width: 200px;
+    width: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    border-bottom: #1e1e1e 3px solid;
+  }
