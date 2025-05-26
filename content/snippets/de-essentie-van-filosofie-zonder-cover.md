@@ -1,5 +1,5 @@
 ---
-title: De Essentie van Filosofie zonder cover
+title: De Essentie van Filosofie
 date: 2025-05-19T12:00:00+02:00
 draft: false
 tags:
