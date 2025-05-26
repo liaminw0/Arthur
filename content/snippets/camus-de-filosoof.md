@@ -1,6 +1,6 @@
 ---
 title: Camus, de Filosoof
-date: 2025-05-26T10:47:00.000Z
+date: 2025-05-26
 draft: false
 tags:
   - existentialisme
