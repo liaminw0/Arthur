@@ -31,7 +31,7 @@ collections:
     label: "Thuispagina"
     files:
       - file: "content/homepage.md"
-        label: "Homepage Content"
+        label: "Thuispagina"
         name: "homepage"
         fields:
           - { label: "Titel", name: "title", widget: "string" }
