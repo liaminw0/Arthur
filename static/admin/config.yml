@@ -26,7 +26,7 @@ collections:
           - { name: "alt", label: "Alt Text", widget: "string", required: false  }
       - { name: "body", label: "Inhoud", widget: "markdown" }
   - name: "homepage"
-    label: "Homepage"
+    label: "Thuispagina"
     files:
       - file: "content/homepage.md"
         label: "Homepage Content"
