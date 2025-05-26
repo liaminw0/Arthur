@@ -52,6 +52,7 @@ body {
     margin: 0;
     border-bottom: 5px solid black;
     padding: 1rem 0;
+    padding-bottom: 1.6rem;
   }
 
 .snippet-date, .snippet-summary {
