@@ -15,7 +15,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { name: "title", label: "Titel", widget: "string" }
-      - { name: "date", label: "Datum", widget: "datetime", picker_utc: false }
+      - { name: "date", label: "Datum", widget: "date" }
       - { name: "draft", label: "Concept", widget: "boolean", default: true }
       - { name: "tags", label: "Tags", widget: "list", default: [] }
       - { name: "summary", label: "Samenvatting", widget: "text" }
