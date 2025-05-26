@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: master  # or your default branch
 
+locale: 'nl'
+
 media_folder: "static/uploads"
 public_folder: "/uploads"
 
