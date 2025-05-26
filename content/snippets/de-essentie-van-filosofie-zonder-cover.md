@@ -6,7 +6,7 @@ tags:
   - filosofie
   - ethiek
   - existentialisme
-summary: Een verkenning van de fundamentele aard van filosofie en de impact
+summary: Een verkenning van de fundamentele aard van filosofie en de impacts
   ervan op het menselijk begrip.
 cover:
   image: ""
