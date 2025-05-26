@@ -67,9 +67,9 @@
           const body = this.props.widgetFor("body");
 
           return h("div", {},
-            title && h("h2", {}, title),
-            date && h("p", {}, new Date(date).toLocaleDateString()),
-            summary && h("p", {}, summary),
+          title && h("h1", { className: "snippet-title" }, title),
+          date && h("p", { className: "snippet-date" }, new Date(date).toLocaleDateString()),
+          summary && h("p", { className: "snippet-summary" }, summary),
             h("div", {}, body)
           );
         }

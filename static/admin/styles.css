@@ -53,3 +53,7 @@ body {
     border-bottom: 5px solid black;
     padding: 1rem 0;
   }
+
+.snippet-date, .snippet-summary {
+  display: none;
+}
