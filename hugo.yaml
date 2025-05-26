@@ -13,6 +13,13 @@ params:
   homeInfoParams:
     Title: art-hov
     Content: lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus, congue vel laoreet ac, dictum vitae odio.
+    
+  assets:
+    favicon: "static/favicon/favicon.ico"
+    favicon16x16: "static/favicon-16x16.png"
+    favicon32x32: "static/favicon-32x32.png"
+    apple_touch_icon: "static/apple-touch-icon.png"
+    safari_pinned_tab: "static/apple-touch-icon.png"
 
   socialIcons: # optional
     - name: "buymeacoffee"
@@ -44,9 +51,3 @@ menu:
       url: /archief/
       weight: 30
 
-  assets:
-    favicon: "static/favicon/favicon.ico"
-    favicon16x16: "static/favicon-16x16.png"
-    favicon32x32: "static/favicon-32x32.png"
-    apple_touch_icon: "static/apple-touch-icon.png"
-    safari_pinned_tab: "static/apple-touch-icon.png"
