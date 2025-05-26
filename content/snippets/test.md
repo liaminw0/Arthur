@@ -1,19 +1,19 @@
 ---
+draft: true
+summary: Een verkenning van de fundamentele aard van filosofie en de impact
+  ervan op het menselijk begrip.
+ShowToc: true
 title: De Essentie van Filosofie
 date: 2025-05-19T12:00:00+02:00
-draft: false
 tags:
   - filosofie
   - ethiek
   - existentialisme
-summary: Een verkenning van de fundamentele aard van filosofie en de impact
-  ervan op het menselijk begrip.
 cover:
   image: /uploads/foto.jpg
   alt: Een peinzende denker
   caption: Foto door [Unsplash](https://unsplash.com/@thoughtcatalog)
   hiddenInList: false
-ShowToc: true
 categories:
   - gedachten
 ---
