@@ -24,7 +24,7 @@ collections:
         fields:
           - { name: "image", label: "Afbeelding", widget: "image", required: false }
           - { name: "alt", label: "Alt Text", widget: "string", required: false  }
-      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "body", label: "Inhoud", widget: "markdown" }
   - name: "homepage"
     label: "Homepage"
     files:
