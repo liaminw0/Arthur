@@ -2,34 +2,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>art-hov on art-hov.blog</title>
-    <link>http://localhost:40993/</link>
+    <link>https://art-hov.blog/</link>
     <description>Recent content in art-hov on art-hov.blog</description>
     <generator>Hugo -- 0.146.0</generator>
     <language>nl</language>
-    <lastBuildDate>Mon, 19 May 2025 12:00:00 +0200</lastBuildDate>
-    <atom:link href="http://localhost:40993/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 May 2025 13:03:00 +0000</lastBuildDate>
+    <atom:link href="https://art-hov.blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>De Essentie van Filosofie</title>
-      <link>http://localhost:40993/snippets/test/</link>
-      <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
-      <guid>http://localhost:40993/snippets/test/</guid>
-      <description>Een verkenning van de fundamentele aard van filosofie en de impact ervan op het menselijk begrip.</description>
+      <title>test</title>
+      <link>https://art-hov.blog/snippets/test-1/</link>
+      <pubDate>Mon, 26 May 2025 13:03:00 +0000</pubDate>
+      <guid>https://art-hov.blog/snippets/test-1/</guid>
+      <description>test</description>
     </item>
     <item>
-      <title>De Essentie van Filosofie zonder cover</title>
-      <link>http://localhost:40993/snippets/de-essentie-van-filosofie-zonder-cover/</link>
-      <pubDate>Mon, 19 May 2025 12:00:00 +0200</pubDate>
-      <guid>http://localhost:40993/snippets/de-essentie-van-filosofie-zonder-cover/</guid>
-      <description>Een verkenning van de fundamentele aard van filosofie en de impact ervan op het menselijk begrip.</description>
+      <title>Camus, de Filosoof</title>
+      <link>https://art-hov.blog/snippets/camus-de-filosoof/</link>
+      <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://art-hov.blog/snippets/camus-de-filosoof/</guid>
+      <description>Een beknopte verkenning van het denken van Albert Camus – de filosoof van het absurde.</description>
     </item>
     <item>
-      <title>art-hov</title>
-      <link>http://localhost:40993/homepage/</link>
+      <title>art-hov.blog</title>
+      <link>https://art-hov.blog/homepage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:40993/homepage/</guid>
-      <description>&lt;p&gt;loremLorem ipsum dolor sit amet, consectetur adipisicing elit. Magni assumenda ex dicta dolorem facere perspiciatis laboriosam distinctio magnam eveniet ratione, deserunt sit sint quaerat natus harum suscipit laudantium architecto quam.
-Reiciendis&lt;/p&gt;
-&lt;h1 id=&#34;lol&#34;&gt;lol&lt;/h1&gt;</description>
+      <guid>https://art-hov.blog/homepage/</guid>
+      <description>&lt;p&gt;loremLorem ipsum dolor sit amet, consectetur &lt;strong&gt;adipisicing&lt;/strong&gt; elit. Magni assumenda ex dicta dolorem facere pedrspiciatis laboriosam distinctio magnam eveniet ratione, deserunt sit sint quaerat natus harum suscipit &lt;strong&gt;laudantium&lt;/strong&gt; architecto quam.
+Reiciendis. Dit is een placeholder&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

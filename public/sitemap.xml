@@ -2,40 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:40993/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/</loc>
+    <lastmod>2025-05-26T13:03:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:40993/categories/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/snippets/</loc>
+    <lastmod>2025-05-26T13:03:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:40993/snippets/test/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/snippets/test-1/</loc>
+    <lastmod>2025-05-26T13:03:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:40993/snippets/de-essentie-van-filosofie-zonder-cover/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/snippets/camus-de-filosoof/</loc>
+    <lastmod>2025-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:40993/tags/ethiek/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/tags/existentialisme/</loc>
+    <lastmod>2025-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:40993/tags/existentialisme/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/tags/</loc>
+    <lastmod>2025-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:40993/tags/filosofie/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/archief/</loc>
   </url><url>
-    <loc>http://localhost:40993/categories/gedachten/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/homepage/</loc>
   </url><url>
-    <loc>http://localhost:40993/snippets/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
+    <loc>https://art-hov.blog/categories/</loc>
   </url><url>
-    <loc>http://localhost:40993/tags/</loc>
-    <lastmod>2025-05-19T12:00:00+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:40993/archief/</loc>
-  </url><url>
-    <loc>http://localhost:40993/homepage/</loc>
-  </url><url>
-    <loc>http://localhost:40993/zoeken/</loc>
+    <loc>https://art-hov.blog/zoeken/</loc>
   </url>
 </urlset>

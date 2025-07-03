@@ -22,10 +22,6 @@ params:
     safari_pinned_tab: "favicon/apple-touch-icon.png"
 
   socialIcons: # optional
-    - name: "buymeacoffee"
-      url: "<link>"
-    - name: "x"
-      url: "<link2>"
     - name: "rss"
       url: "index.xml"
   cover:

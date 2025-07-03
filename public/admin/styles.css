@@ -6,7 +6,7 @@ body {
 .frame-content {
     font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
     line-height: 1.9rem;
-    max-width: 90%;
+    max-width: 800px;
     position: relative; /* or absolute */
     left: 50%;
     transform: translateX(-50%);
@@ -23,10 +23,9 @@ body {
     color: #1e1e1e;
   }
 
-
   .container {
-    margin: 0 auto;
-    max-width: 500px;
+    margin: 6rem auto;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
   }
@@ -38,6 +37,7 @@ body {
     align-items: center;
     gap: 3rem;
     font-size: 4rem;
+    margin-bottom: 2rem;
   }
   
   .logo {
@@ -48,8 +48,22 @@ body {
   }
 
   .heading h1 {
-    font-size: 2rem;
+    font-size: 4rem;
     margin: 0;
-    padding: 0;
-    border-bottom: #1e1e1e 3px solid;
+    border-bottom: 5px solid black;
+    padding: 1rem 0;
+    padding-bottom: 1.6rem;
   }
+
+.snippet-date, .snippet-summary {
+  display: none;
+}
+
+.snippet-title {
+  text-align: center;
+}
+
+blockquote {
+  border-left: .2rem black solid;
+  padding-left: 1rem;
+}

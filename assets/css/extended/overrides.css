@@ -62,8 +62,8 @@ hr {
     background-image: url('/art-hov_logo.png');
     background-size: cover;
     background-position: center;
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
 }
 
 .home-info .entry-header {
@@ -78,7 +78,7 @@ hr {
 
 .home-info .entry-header h1 {
     margin: auto 0;
-    font-size: 4rem !important;
+    font-size: 2.5rem !important;
     border-bottom: .4rem solid var(--primary);
 
 }
