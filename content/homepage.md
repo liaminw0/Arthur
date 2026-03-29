@@ -2,6 +2,6 @@
 title: art-hov.blog
 logo: /uploads/art-hov_logo.png
 ---
-Welkom! // Welcome!
+Welkom!
 
-Dit is de blog van Arthur Hovenkamp! // This is the blog of Arthur Hovenkamp!
+Dit is de blog van Arthur Hovenkamp!
