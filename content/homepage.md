@@ -1,5 +1,5 @@
 ---
 title: art-hov.blog
-logo: /uploads/art-hov_logo.png
+logo: /uploads/arthov-removebg-preview.png
 ---
 Welkom!
