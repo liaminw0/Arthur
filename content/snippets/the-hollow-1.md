@@ -2,10 +2,11 @@
 title: The Hollow
 date: 2026-03-10T11:17:00.000+01:00
 draft: false
-tags: []
+tags:
+  - literatuur
 summary: Een fragment uit een kort verhaal van mijn hand.
 ---
-**Fragment uit *The Hollow* van Arthur Hovenkamp (2025)**\
+**Introductie**\
 Voor het vak Geschiedenis van de filosofie 6: wereldwijde hermeneutiek, gegeven door Andrea Sangiacomo naar zijn boek *The Tragedy of the Self: Lectures on Global Hermeneutics* (2023), heb ik een kort verhaal geschreven. Dit korte verhaal wou ik al veel langer schrijven, maar binnen het kader van het vak, de analyse van wat de "zelf" is en vraagstukken daaromheen, was het voor de creatieve opdracht die we ervoor moesten doen vooral interessant. Voor de opdracht heb ik 3 bladzijden ingeleverd, ergens in het midden van het 14 bladzijde lange verhaal, waar ik me voor deze post ook tot beperk. Enige context is belangrijk. De hoofdpersoon heet Lord Allister, een jongeman uit Londen van het fin de siècle (1880-1914) die een kerk in de Italiaanse provincie Romagne besluit te kopen. Zijn vader had tijdens zijn Grand Tour door Europa de kerk al gezien en merkte er iets vreemds aan, wat hij toeschreef aan zijn esthetische intuïtie. Deze intuïtie bracht hem tot waanzin en uiteindelijk tot zijn dood. Lord Allister merkt dat hij in het dorp, waar het anarchisme van Errico Malatesta (1853-1932) wordt aangehangen, als Britse Lord niet bepaald welkom is. Het fragment is de climax: Lord Allister vlucht naar de kerk toe en ontdekt de oorsprong van zijn vader's esthetische intuïtie.
 
 **Lord Allister's Notebook - Fragment from *The Hollow* (2025) by Arthur Hovenkamp**\
