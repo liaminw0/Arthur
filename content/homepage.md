@@ -1,6 +1,6 @@
 ---
 title: art-hov.blog
-logo: ""
+logo: /uploads/art-hov_logo.png
 ---
 Welkom! // Welcome!
 
