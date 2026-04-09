@@ -4,8 +4,7 @@ date: 2026-03-10T11:17:00.000+01:00
 draft: false
 tags:
   - literarthur
-  - fin-de-siècle
-  - gothic-horror
+  - gothische fictie
 summary: Een fragment uit een kort verhaal van mijn hand.
 ---
 **Introductie**\
