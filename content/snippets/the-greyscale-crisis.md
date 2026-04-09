@@ -5,7 +5,6 @@ draft: false
 tags:
   - filosofie
   - esteticisme
-  - kritische-theorie
 summary: Een verouderd maar belangrijk essay uit mijn vorige blog.
 ---
 **Introductie**\
