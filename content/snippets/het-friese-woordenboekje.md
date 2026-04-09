@@ -5,7 +5,6 @@ draft: false
 tags:
   - literarthur
   - autofictie
-  - ghost-story
 summary: Een kort verhaal dat gaat over de ervaringen van mijn opa in de Tweede
   Wereldoorlog en hoe deze ervaringen voortbestaan in mijn leven.
 ---
