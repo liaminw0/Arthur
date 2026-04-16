@@ -33,7 +33,7 @@ De wandelaar liep eens een mees tegen het lijf. Jong was het nestgevallen kleine
 
 De wandelaar loopt door, nu voorbij de grafheuvel. De ondergaande zon en de opzettende wind hebben kou en mist aangezet en de wandelaar beleeft nog een sensatie. De dag maakt plaat voor de nacht. De grafheuvel, het altaar, heeft zich voorbereid op het nemen van een leven en het geven van een dood.
 
-De wandelaar is de grafheuvel voorbij gelopen.
+De wandelaar is de grafheuvel voorbijgelopen.
 
 ***The Devil in the Details* (2026) by Arthur Hovenkamp**\
 I awoke within my tent on a clear yet windy summer morning. My eyes were still slumbering, having only just exited the realm of dreams, the light was too bright. The sun had just risen, casting rays of sunlight unto the canvas of my tent. The sunlight went right through the beige surface, leaving miniscule fluctuations of colour on the seemingly monotonous whole, with the thin lines of stitchwork being the only differentiation.
