@@ -8,8 +8,7 @@ tags:
 summary: Een kort verhaal over geforceerde artistieke creatie, paralyserende
   depressie en Griekse mythologie.
 ---
-**Sparagmos (2026) by Arthur Hovenkamp**
-
+**Sparagmos (2026) by Arthur Hovenkamp**\
 The soft creature is emanating a harmonious hum. 
 
 My cat, which I have named Agave, is purring on my chest with short, creaking intervals. Her whiskers are directly in my face. Her eyes are closed, she is feeling safe, while being so close to a pit of despair.
