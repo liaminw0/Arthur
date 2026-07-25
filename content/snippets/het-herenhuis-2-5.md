@@ -1,13 +1,14 @@
 ---
-title: Het herenhuis (2/5)
+title: Het Herenhuis (2/5)
 date: 2026-07-25T20:26:00.000+02:00
 draft: false
 tags:
   - Gothische Fictie
   - Literarthur
+  - Het Herenhuis
 summary: Het tweede deel van vijf delen van een kort verhaal van mijn hand.
 ---
-**Het herenhuis II (2026) van Arthur Hovenkamp**\
+**Het Herenhuis II (2026) van Arthur Hovenkamp**\
 De sfeer, het mysterie van de situatie, het interieur en de kunstcollectie, het herenhuis zelf, maar ook zeker het figuur meneer Alius, brengen mij allemaal tezamen tot één vraag.
 
 “Wat is de geschiedenis van het huis precies?”
