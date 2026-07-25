@@ -93,7 +93,7 @@ Alles begint te verfrommelen, met elke lik en hap die ik neem. Eerst mijn mond, 
 
 Gelukkig zitten we in de kreukels van het gebouw, anders viel iedereen naar beneden.
 
-We zitten dicht op elkaar gekreukeld. Hierdoor weet ik eindelijk met wie ik kastanjes aan het zoeken was. Het was Klem, net zoals de klemmen waarmee we dekens vastmaken aan stoelen om kastelen te bouwen.
+We zitten dicht op elkaar gekreukeld. Hierdoor weet ik eindelijk met wie ik walnoten aan het zoeken was. Het was Klem, net zoals de klemmen waarmee we dekens vastmaken aan stoelen om kastelen te bouwen.
 
 Hij heet geen Klem volgens mijn ouders, maar ik weet dat het wel zo is.
 
@@ -109,11 +109,11 @@ Ik weet wat er gaat gebeuren.
 
 Ik zweef zoals altijd omhoog. Ik kan mij niet meer bewegen. Ik zweef door het warenhuis, eerst door de platenzaak waar gekleurde ballen liggen en langs de InterToys. 
 
-Ik ben altijd blij met LEGO dat mijn ouders geven, maar ik geef nooit aan wat ik écht wil hebben. Ze denken hoe duurder hoe beter. Maar ik heb de goedkopere nodig om mijn Clone en Droid legers uit te breiden.
+Ik ben altijd blij met de LEGO die mijn ouders geven, maar ik geef nooit aan wat ik écht wil hebben. Ze denken hoe duurder hoe beter. Maar ik heb de goedkopere nodig om mijn Clone en Droid legers uit te breiden.
 
 Ik zweef de roltrap op.
 
-Langs klerenzaak en door de IKEA beland ik op het dak. Ik zweef via de bijkeuken de achtertuin in. Er staan fakkels, maar ze staan uit. Laatst stonden ze wel aan. 
+Langs de klerenzaak en door de IKEA beland ik op het dak. Ik zweef via de bijkeuken de achtertuin in. Er staan fakkels, maar ze staan uit. Laatst stonden ze wel aan. 
 
 Toen heb ik mijn knuffel Pietertje de Poes in brand gestoken. Ik kwam te dicht in de buurt. Vuur is gieriger dan ik had ingeschat.
 
