@@ -1,13 +1,14 @@
 ---
-title: Het herenhuis (1/5)
+title: Het Herenhuis (1/5)
 date: 2026-04-24T13:31:00.000+02:00
 draft: false
 tags:
   - literarthur
   - gothische fictie
-summary: Het eerste deel van zes vijf delen van een kort verhaal van mijn hand.
+  - Het Herenhuis
+summary: Het eerste deel van vijf delen van een kort verhaal van mijn hand.
 ---
-***Het herenhuis I* (2026) van Arthur Hovenkamp**\
+***Het Herenhuis I* (2026) van Arthur Hovenkamp**\
 Ik sta voor de deur van het herenhuis van meneer Alius. Ik kwam hem tegen tijdens een wandeling langs de Vaart, nadat ik mijn auto bij de Kolk had geparkeerd. Ik was onderweg om via een brug van de noordzijde naar de zuidzijde van de Vaart te gaan om een tweedehandswinkel in een zijstraat te bezoeken toen ik op het stoplicht moest wachten en hem ontmoette. Hij droeg een pak zoals men ze kent uit het einde van de negentiende en het begin van de twintigste eeuw, met cilinderhoed, opstaande kraag, kravat en rokjas. Ik besloot hem aan te spreken. Hij bleek meneer Alius te heten, kunsthandelaar van beroep, woonachtig aan de noordzijde van de Vaart. Ik stelde mezelf voor als schrijver en liefhebber van de Belle Époque, hintend op zijn kledij, waarop hij begon over zijn specialisme in de werken van de Symbolisten en Prerafaëlieten. Hij nodigde mij uit om binnenkort bij hem op bezoek te komen, bij zijn herenhuis aan de noordzijde van de Vaart.
 
 Ik liep toen door naar de tweedehandswinkel, de uitnodiging genoteerd te hebben. Het bezoek aan de winkel was teleurstellend, ook al heeft de zoektocht tussen oude spullen en de wandeling mij tot welgezochte rust gebracht. Toch heb ik een neoklassieke spiegel gevonden, gemaakt aan het einde van de negentiende eeuw. Deze spiegel heb ik mee als cadeau, nu ik voor de deur van het herenhuis van meneer Alius sta.
