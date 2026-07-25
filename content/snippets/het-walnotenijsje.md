@@ -39,7 +39,7 @@ Mijn beide knieën zijn aan het bloeden.
 
 “Arthur! Als je nu niet komt moet je zelf een ijsje halen! Bij de draak!”.
 
-Ik besluit dat het nu wel tijd voor een ijsje is. Ik ben toch alleen en besluit de glijbaan naar beneden te nemen. Het piept en piept en ik val in de ballenbak. Er vliegen rood, blauw, geel, groene ballen in het rond.
+Ik besluit dat het tijd voor een ijsje is. Ik ben toch alleen en besluit de glijbaan naar beneden te nemen. Het piept en piept en ik val in de ballenbak. Er vliegen rood, blauw, geel, groene ballen in het rond.
 
 Ze vallen het kussenlandschap uit.
 
@@ -113,9 +113,7 @@ Ik ben altijd blij met de LEGO die mijn ouders geven, maar ik geef nooit aan wat
 
 Ik zweef de roltrap op.
 
-Langs de klerenzaak en door de IKEA beland ik op het dak. Ik zweef via de bijkeuken de achtertuin in. Er staan fakkels, maar ze staan uit. Laatst stonden ze wel aan. 
-
-Toen heb ik mijn knuffel Pietertje de Poes in brand gestoken. Ik kwam te dicht in de buurt. Vuur is gieriger dan ik had ingeschat.
+Langs de klerenzaak en door de IKEA beland ik op het dak. Ik zweef via de bijkeuken de achtertuin in. Er staan fakkels, maar ze staan uit. Laatst stonden ze wel aan. Toen heb ik mijn knuffel Pietertje de Poes in verschroeid. Ik kwam te dicht in de buurt. Vuur is gieriger dan ik had ingeschat.
 
 Mijn moeder vertelde altijd verhalen over de poes met de lampjesogen. Zijn ogen moeten me denken aan de ogen van de Foekies.
 
