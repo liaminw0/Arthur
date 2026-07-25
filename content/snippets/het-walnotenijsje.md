@@ -53,7 +53,7 @@ De draak wenkt vanuit de liftschacht dat ik naar haar toe moet komen. Ik besluit
 
 Ze haat mij. 
 
-Laatst moest ik voor straf blijven zitten bij de ingang terwijl iedereen aan het buitenspelen was. Toen heb ik haar zoontje laten struikelen en ging hij huilen. Ik kon niet anders. Hij is dik en dom én een moederskindje. Hij verdiende het.
+Laatst moest ik voor straf blijven zitten bij de ingang terwijl iedereen aan het buitenspelen was. Ik wou al mijn vriendjes en vriendinnetjes meenemen naar het bos. Het zoontje van de draak had ons verklikt. Bij de ingang strekte ik mijn benen en heb ik hem laten struikelen. Hij ging huilen in de armen van zijn moeder. Ik kon niet anders. Hij is dik, dom, een klikspaan en een moederskindje. Hij verdiende het.
 
 “Wat voor ijsje wil je Arthur?”, vraagt de draak.
 
