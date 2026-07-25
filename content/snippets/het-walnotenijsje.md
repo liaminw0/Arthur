@@ -8,8 +8,7 @@ tags:
 summary: Een kort verhaal over een waargedroomde kinderdroom samengevoegd met
   enkele jeugdherinneringen.
 ---
-**Het walnotenijsje (2026) van Arthur Hovenkamp**
-
+**Het walnotenijsje (2026) van Arthur Hovenkamp**\
 Ik ben aan het spelen in de Ballorig op de eerste verdieping van de Van der Veen. Ik ben samen met iemand, ik weet niet precies met wie. Klimmend door het rood, blauw, geel, groene kussenlandschap banen we ons een weg.
 
 We zijn ergens naar op zoek, ook al weet ik niet naar wat. Het wordt vast duidelijk als we het gevonden hebben.
