@@ -1,5 +1,5 @@
 ---
-title: Het Herenhuis (1/5)
+title: Het Herenhuis I
 date: 2026-04-24T13:31:00.000+02:00
 draft: false
 tags:
