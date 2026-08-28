@@ -5,8 +5,6 @@ title: art-hov.blog
 theme: ["PaperMod"]
 
 params:
-  author:
-    name: "art-hov.blog"
   ShowReadingTime: true
   ShowShareButtons: true
   ShowBreadCrumbs: true
@@ -26,6 +24,8 @@ params:
   socialIcons: # optional
     - name: "rss"
       url: "index.xml"
+    - name: "instagram"
+      url: "https://instagram.com/arthur.hovenkamp"
   buttondown:
     username: "art-hov.blog"
   cover:
@@ -42,6 +42,10 @@ menu:
       name: Nieuwsbrief
       url: /nieuwsbrief/
       weight: 10
+    - identifier: about
+      name: Over mij
+      url: /over-mij/
+      weight: 15
     - identifier: tags
       name: Tags
       url: /tags/

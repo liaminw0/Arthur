@@ -3,7 +3,7 @@ title: De buurtkat
 date: 2026-08-20T15:38:00.000+02:00
 draft: false
 tags:
-  - literathur
+  - literarthur
   - autofictie
 summary: Een nogal kort verhaal geschreven voor Podium Pluis als pilot voor een
   groter project.
