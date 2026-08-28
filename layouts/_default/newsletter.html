@@ -1,0 +1,32 @@
+{{- define "main" }}
+<article class="post-single newsletter-page">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    <div class="post-description">{{ .Description }}</div>
+  </header>
+
+  <section class="newsletter-signup">
+    <form
+      class="newsletter-signup__form"
+      action="https://buttondown.com/api/emails/embed-subscribe/{{ site.Params.buttondown.username }}"
+      method="post"
+    >
+      <label for="newsletter-email">E-mailadres</label>
+      <div class="newsletter-signup__controls">
+        <input
+          id="newsletter-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="jij@voorbeeld.nl"
+          required
+        >
+        <input type="hidden" name="embed" value="1">
+        <button type="submit">Inschrijven</button>
+      </div>
+      <p class="newsletter-signup__note">Je kunt je op ieder moment weer uitschrijven.</p>
+    </form>
+  </section>
+</article>
+{{- end }}

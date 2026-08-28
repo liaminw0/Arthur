@@ -5,6 +5,8 @@ title: art-hov.blog
 theme: ["PaperMod"]
 
 params:
+  author:
+    name: "art-hov.blog"
   ShowReadingTime: true
   ShowShareButtons: true
   ShowBreadCrumbs: true
@@ -24,6 +26,8 @@ params:
   socialIcons: # optional
     - name: "rss"
       url: "index.xml"
+  buttondown:
+    username: "art-hov.blog"
   cover:
     hiddenInSingle: true # hide on single page
 
@@ -34,6 +38,10 @@ outputs:
     - JSON # necessary for search
 menu:
   main:
+    - identifier: newsletter
+      name: Nieuwsbrief
+      url: /nieuwsbrief/
+      weight: 10
     - identifier: tags
       name: Tags
       url: /tags/
@@ -46,4 +54,3 @@ menu:
       name: Archief
       url: /archief/
       weight: 30
-
