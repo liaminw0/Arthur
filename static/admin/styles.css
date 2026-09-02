@@ -140,14 +140,18 @@ section.card, .details-content { padding: 1.25rem; }
 .statistics-actions { display: flex; align-items: end; gap: .65rem; }
 .statistics-actions label { display: grid; gap: .35rem; color: var(--muted); font-size: .75rem; }
 .statistics-actions select { min-width: 130px; }
+.statistics-period { align-self: center; color: var(--muted); font-size: .8rem; font-weight: 700; }
 .statistics-summary { display: grid; margin-bottom: 1.15rem; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
 .statistic-card { display: grid; gap: .4rem; padding: 1.25rem; }
 .statistic-card span { color: var(--muted); font-size: .8rem; font-weight: 700; }
 .statistic-card strong { font-family: Georgia, serif; font-size: clamp(1.75rem, 4vw, 2.7rem); font-weight: 500; }
 .statistics-chart-card { margin-bottom: 1.15rem; }
-.statistics-chart { display: flex; height: 250px; align-items: end; gap: clamp(2px, .5vw, 7px); padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--line); }
+.statistics-chart { display: grid; height: 250px; grid-template-columns: auto minmax(0, 1fr); gap: .65rem; padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--line); }
+.chart-axis { display: flex; min-width: 2rem; padding-bottom: 1.1rem; flex-direction: column; justify-content: space-between; color: var(--muted); font-size: .68rem; text-align: right; }
+.chart-plot { display: flex; min-width: 0; height: 100%; align-items: end; gap: clamp(2px, .5vw, 7px); background: linear-gradient(to bottom, var(--line) 1px, transparent 1px, transparent calc(50% - 1px), var(--line) 50%, transparent calc(50% + 1px), transparent calc(100% - 1px), var(--line) 100%); }
 .chart-column { display: flex; min-width: 0; height: 100%; flex: 1; flex-direction: column; justify-content: end; gap: .45rem; }
-.chart-bar-wrap { display: flex; min-height: 1px; flex: 1; align-items: end; }
+.chart-bar-wrap { display: flex; min-height: 1px; flex: 1; flex-direction: column; justify-content: end; }
+.chart-value { color: var(--muted); font-size: .68rem; font-variant-numeric: tabular-nums; text-align: center; }
 .chart-bar { width: 100%; min-height: 2px; border-radius: 4px 4px 1px 1px; background: var(--accent); }
 .chart-column time { overflow: hidden; color: var(--muted); font-size: .64rem; text-align: center; text-overflow: clip; white-space: nowrap; }
 .statistics-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.15rem; }

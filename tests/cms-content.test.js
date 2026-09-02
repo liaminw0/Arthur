@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 import { articlePath, createArticle, parseAbout, parseArticle, parseHomepage, splitMarkdown, updateAbout, updateArticle, updateHomepage } from "../functions/api/cms/_content.js";
-import { analyticsQuery, dailyRanges, isInterestingPage, mergeAnalyticsZones, normalizeStatistics } from "../functions/api/cms/statistics.js";
+import { analyticsBatchQuery, analyticsQuery, dailyRanges, isInterestingPage, mergeAnalyticsZones, normalizeStatistics } from "../functions/api/cms/statistics.js";
 
 const snippetsDirectory = new URL("../content/snippets/", import.meta.url);
 
@@ -95,6 +95,16 @@ test("Cloudflare statistics query uses supported adaptive dimensions and filters
   assert.match(query, /clientRequestPath_like: "\/snippets\/%"/);
   assert.match(query, /dimensions \{ date clientRequestPath clientCountryName \}/);
   assert.doesNotMatch(query, /datetimeDay|edgeResponseContentTypeName/);
+});
+
+test("Cloudflare statistics batch daily ranges into one HTTP query", () => {
+  const query = analyticsBatchQuery("zone-id", "art-hov.blog", [
+    { since: "2026-09-01T00:00:00.000Z", until: "2026-09-02T00:00:00.000Z" },
+    { since: "2026-09-02T00:00:00.000Z", until: "2026-09-03T00:00:00.000Z" },
+  ]);
+  assert.match(query, /day0: httpRequestsAdaptiveGroups/);
+  assert.match(query, /day1: httpRequestsAdaptiveGroups/);
+  assert.equal((query.match(/httpRequestsAdaptiveGroups/g) || []).length, 2);
 });
 
 test("Cloudflare statistics split long periods into one-day ranges", () => {

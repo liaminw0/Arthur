@@ -581,21 +581,26 @@ function renderStatistics(statistics) {
   const chart = $("#statistics-chart");
   chart.replaceChildren();
   const maximum = Math.max(1, ...statistics.daily.map(day => day.visits));
+  const axis = document.createElement("div"); axis.className = "chart-axis";
+  for (const value of [maximum, Math.round(maximum / 2), 0]) { const label = document.createElement("span"); label.textContent = formatNumber(value); axis.append(label); }
+  const plot = document.createElement("div"); plot.className = "chart-plot";
   const dateFormatter = new Intl.DateTimeFormat("nl-NL", { day: "numeric", month: "short", timeZone: "UTC" });
   for (const day of statistics.daily) {
     const column = document.createElement("div"); column.className = "chart-column";
     const wrap = document.createElement("div"); wrap.className = "chart-bar-wrap";
     const bar = document.createElement("div"); bar.className = "chart-bar"; bar.style.height = `${Math.max(2, day.visits / maximum * 100)}%`; bar.title = `${formatDisplayDate(day.date)}: ${formatNumber(day.visits)} bezoeken`;
+    const value = document.createElement("span"); value.className = "chart-value"; value.textContent = formatNumber(day.visits);
     const date = document.createElement("time"); date.dateTime = day.date; date.textContent = dateFormatter.format(new Date(`${day.date}T00:00:00Z`));
-    wrap.append(bar); column.append(wrap, date); chart.append(column);
+    wrap.append(value, bar); column.append(wrap, date); plot.append(column);
   }
+  chart.append(axis, plot);
   chart.setAttribute("aria-label", `Bezoeken per dag van ${start} tot ${end}`);
   renderRanking("#statistics-pages", statistics.pages, pageName);
   renderRanking("#statistics-countries", statistics.countries, countryName);
 }
 
 async function loadStatistics(force = false) {
-  const period = Number($("#statistics-period").value);
+  const period = 7;
   if (!force && state.statisticsPeriod === period) return;
   const button = $("#refresh-statistics");
   setBusy(button, true, "Laden…");
@@ -750,7 +755,6 @@ $("#homepage-upload").addEventListener("change", event => uploadImage(event.targ
 $("#homepage-form").addEventListener("input", updateHomepageMeta);
 $("#homepage-form").addEventListener("submit", event => { event.preventDefault(); saveHomepage(); });
 $("#about-form").addEventListener("submit", event => { event.preventDefault(); saveAbout(); });
-$("#statistics-period").addEventListener("change", () => loadStatistics(true));
 $("#refresh-statistics").addEventListener("click", () => loadStatistics(true));
 window.addEventListener("beforeunload", event => { if (hasUnsavedChanges()) { event.preventDefault(); event.returnValue = ""; } });
 

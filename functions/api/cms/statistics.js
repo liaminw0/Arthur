@@ -21,15 +21,23 @@ function top(groups, dimension) {
   return (groups || []).map(group => ({ label: String(group.dimensions?.[dimension] || "Onbekend"), value: number(group.count) })).filter(item => item.value > 0).sort((left, right) => right.value - left.value).slice(0, 10);
 }
 
-export function analyticsQuery(zoneId, hostname, since, until) {
+function analyticsField(alias, hostname, since, until) {
   const filter = `filter: {datetime_geq: ${JSON.stringify(since)}, datetime_lt: ${JSON.stringify(until)}, clientRequestHTTPHost: ${JSON.stringify(hostname)}, requestSource: \"eyeball\", OR: [{clientRequestPath: \"/\"}, {clientRequestPath: \"/nieuwsbrief/\"}, {clientRequestPath: \"/snippets/\"}, {clientRequestPath: \"/over-mij/\"}, {clientRequestPath_like: \"/snippets/%\"}]}`;
-  return `query { viewer { zones(filter: {zoneTag: ${JSON.stringify(zoneId)}}) {
-    pageStats: httpRequestsAdaptiveGroups(limit: 1000, orderBy: [count_DESC], ${filter}) {
+  return `${alias}: httpRequestsAdaptiveGroups(limit: 1000, orderBy: [count_DESC], ${filter}) {
       count
       sum { visits edgeResponseBytes }
       dimensions { date clientRequestPath clientCountryName }
-    }
+    }`;
+}
+
+export function analyticsBatchQuery(zoneId, hostname, ranges) {
+  return `query { viewer { zones(filter: {zoneTag: ${JSON.stringify(zoneId)}}) {
+    ${ranges.map((range, index) => analyticsField(`day${index}`, hostname, range.since, range.until)).join("\n    ")}
   } } }`;
+}
+
+export function analyticsQuery(zoneId, hostname, since, until) {
+  return analyticsBatchQuery(zoneId, hostname, [{ since, until }]);
 }
 
 export function dailyRanges(since, until) {
@@ -75,31 +83,31 @@ export function mergeAnalyticsZones(zones) {
   };
 }
 
-async function fetchAnalyticsZone(token, zoneId, hostname, since, until) {
-  const result = await fetch(GRAPHQL_ENDPOINT, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "application/json" }, body: JSON.stringify({ query: analyticsQuery(zoneId, hostname, since, until) }) });
+async function fetchAnalyticsZones(token, zoneId, hostname, ranges) {
+  const query = analyticsBatchQuery(zoneId, hostname, ranges);
+  const result = await fetch(GRAPHQL_ENDPOINT, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "application/json" }, body: JSON.stringify({ query }) });
+  const range = { since: ranges[0].since, until: ranges.at(-1).until };
   if (!result.ok) {
     let message = "";
     try { message = providerError((await result.clone().json()).errors); } catch { /* Cloudflare did not return JSON */ }
-    console.error("Cloudflare Analytics HTTP error", { status: result.status, message, since, until });
+    console.error("Cloudflare Analytics HTTP error", { status: result.status, message, ...range });
     throw new CmsError(`Cloudflare-statistieken konden niet worden opgehaald (HTTP ${result.status})${message ? `: ${message}` : "."}`, 424, "analytics_error");
   }
   const data = await result.json();
   if (data.errors?.length) {
     const message = providerError(data.errors);
-    console.error("Cloudflare Analytics error", { messages: data.errors.map(error => error.message), since, until });
+    console.error("Cloudflare Analytics error", { messages: data.errors.map(error => error.message), ...range });
     throw new CmsError(`Cloudflare heeft de statistiekenquery geweigerd${message ? `: ${message}` : "."}`, 424, "analytics_query_error");
   }
   const zone = data.data?.viewer?.zones?.[0];
   if (!zone) throw new CmsError("Cloudflare heeft geen statistieken voor deze zone teruggegeven.", 404, "analytics_not_found");
-  return zone;
+  return ranges.map((_, index) => ({ pageStats: zone[`day${index}`] || [] }));
 }
 
 async function fetchDailyZones(token, zoneId, hostname, ranges) {
-  const zones = [];
-  for (let index = 0; index < ranges.length; index += 5) {
-    zones.push(...await Promise.all(ranges.slice(index, index + 5).map(range => fetchAnalyticsZone(token, zoneId, hostname, range.since, range.until))));
-  }
-  return zones;
+  const batches = [];
+  for (let index = 0; index < ranges.length; index += 5) batches.push(ranges.slice(index, index + 5));
+  return (await Promise.all(batches.map(batch => fetchAnalyticsZones(token, zoneId, hostname, batch)))).flat();
 }
 
 export function normalizeStatistics(zone, period, since, until) {
@@ -124,8 +132,7 @@ export function normalizeStatistics(zone, period, since, until) {
 export async function onRequestGet(context) {
   try {
     await requireSession(context);
-    const requestedPeriod = Number(new URL(context.request.url).searchParams.get("days"));
-    const period = requestedPeriod === 7 ? 7 : 30;
+    const period = 7;
     const untilDate = new Date();
     const sinceDate = new Date(untilDate);
     sinceDate.setUTCDate(sinceDate.getUTCDate() - period + 1);
