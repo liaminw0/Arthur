@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 import { articlePath, createArticle, parseAbout, parseArticle, parseHomepage, splitMarkdown, updateAbout, updateArticle, updateHomepage } from "../functions/api/cms/_content.js";
-import { normalizeStatistics } from "../functions/api/cms/statistics.js";
+import { analyticsQuery, normalizeStatistics } from "../functions/api/cms/statistics.js";
 
 const snippetsDirectory = new URL("../content/snippets/", import.meta.url);
 
@@ -86,4 +86,11 @@ test("Cloudflare statistics are normalized and missing days are filled", () => {
   assert.deepEqual(statistics.daily, [{ date: "2026-09-01", visits: 7, requests: 20 }, { date: "2026-09-02", visits: 0, requests: 0 }]);
   assert.deepEqual(statistics.pages, [{ label: "/snippets/test/", value: 10 }]);
   assert.deepEqual(statistics.countries, [{ label: "NL", value: 8 }]);
+});
+
+test("Cloudflare statistics query uses supported adaptive dimensions and filters", () => {
+  const query = analyticsQuery("zone-id", "art-hov.blog", "2026-09-01T00:00:00.000Z", "2026-09-02T12:00:00.000Z");
+  assert.match(query, /orderBy: \[date_ASC\]/);
+  assert.match(query, /dimensions \{ date \}/);
+  assert.doesNotMatch(query, /datetimeDay|edgeResponseContentTypeName/);
 });

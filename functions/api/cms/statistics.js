@@ -15,13 +15,12 @@ function top(groups, dimension) {
   return (groups || []).map(group => ({ label: String(group.dimensions?.[dimension] || "Onbekend"), value: number(group.count) })).filter(item => item.value > 0);
 }
 
-function analyticsQuery(zoneId, hostname, since, until) {
+export function analyticsQuery(zoneId, hostname, since, until) {
   const filter = `filter: {datetime_geq: ${JSON.stringify(since)}, datetime_lt: ${JSON.stringify(until)}, clientRequestHTTPHost: ${JSON.stringify(hostname)}, requestSource: \"eyeball\"}`;
-  const pageFilter = `filter: {datetime_geq: ${JSON.stringify(since)}, datetime_lt: ${JSON.stringify(until)}, clientRequestHTTPHost: ${JSON.stringify(hostname)}, requestSource: \"eyeball\", edgeResponseContentTypeName: \"html\"}`;
   return `query { viewer { zones(filter: {zoneTag: ${JSON.stringify(zoneId)}}) {
     totals: httpRequestsAdaptiveGroups(limit: 1, ${filter}) { count sum { visits edgeResponseBytes } }
     daily: httpRequestsAdaptiveGroups(limit: 31, orderBy: [date_ASC], ${filter}) { count sum { visits } dimensions { date } }
-    pages: httpRequestsAdaptiveGroups(limit: 10, orderBy: [count_DESC], ${pageFilter}) { count dimensions { clientRequestPath } }
+    pages: httpRequestsAdaptiveGroups(limit: 10, orderBy: [count_DESC], ${filter}) { count dimensions { clientRequestPath } }
     countries: httpRequestsAdaptiveGroups(limit: 10, orderBy: [count_DESC], ${filter}) { count dimensions { clientCountryName } }
   } } }`;
 }
