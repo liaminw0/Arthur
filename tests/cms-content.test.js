@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
-import { articlePath, createArticle, parseArticle, parseHomepage, splitMarkdown, updateArticle, updateHomepage } from "../functions/api/cms/_content.js";
+import { articlePath, createArticle, parseAbout, parseArticle, parseHomepage, splitMarkdown, updateAbout, updateArticle, updateHomepage } from "../functions/api/cms/_content.js";
+import { normalizeStatistics } from "../functions/api/cms/statistics.js";
 
 const snippetsDirectory = new URL("../content/snippets/", import.meta.url);
 
@@ -60,7 +61,29 @@ test("homepage editing uses content/homepage.md and preserves its title", async 
   assert.match(changed, /---\nNieuwe intro\.\n$/);
 });
 
+test("about page editing preserves its front matter", async () => {
+  const source = await readFile(new URL("../content/over-mij.md", import.meta.url), "utf8");
+  const about = parseAbout("sha", source);
+  const changed = updateAbout(source, { body: "## Nieuw\n\nNieuwe tekst.\n" });
+  assert.equal(about.title, "Over mij");
+  assert.equal(splitMarkdown(changed).frontMatter, splitMarkdown(source).frontMatter);
+  assert.match(changed, /---\n## Nieuw\n\nNieuwe tekst\.\n$/);
+});
+
 test("invalid article paths are rejected", () => {
   assert.throws(() => articlePath("../verkeerd"), error => error.code === "invalid_slug");
   assert.throws(() => articlePath("Hoofdletters"), error => error.code === "invalid_slug");
+});
+
+test("Cloudflare statistics are normalized and missing days are filled", () => {
+  const statistics = normalizeStatistics({
+    totals: [{ count: 42, sum: { visits: 12, edgeResponseBytes: 2048 } }],
+    daily: [{ count: 20, sum: { visits: 7 }, dimensions: { datetimeDay: "2026-09-01" } }],
+    pages: [{ count: 10, dimensions: { clientRequestPath: "/snippets/test/" } }, { count: 4, dimensions: { clientRequestPath: "/cdn-cgi/test" } }],
+    countries: [{ count: 8, dimensions: { clientCountryName: "NL" } }],
+  }, 2, "2026-09-01T00:00:00.000Z", "2026-09-02T12:00:00.000Z");
+  assert.deepEqual(statistics.totals, { visits: 12, requests: 42, bandwidth: 2048 });
+  assert.deepEqual(statistics.daily, [{ date: "2026-09-01", visits: 7, requests: 20 }, { date: "2026-09-02", visits: 0, requests: 0 }]);
+  assert.deepEqual(statistics.pages, [{ label: "/snippets/test/", value: 10 }]);
+  assert.deepEqual(statistics.countries, [{ label: "NL", value: 8 }]);
 });

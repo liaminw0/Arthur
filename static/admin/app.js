@@ -11,6 +11,9 @@ const state = {
   slugTouched: false,
   homepage: null,
   homepageBaseline: "",
+  about: null,
+  aboutBaseline: "",
+  statisticsPeriod: null,
   media: [],
   toastTimer: null,
 };
@@ -84,6 +87,91 @@ function commaList(value) {
   return [...new Set(String(value).split(",").map(item => item.trim()).filter(Boolean))];
 }
 
+function escapeHtml(value) {
+  const element = document.createElement("div");
+  element.textContent = value;
+  return element.innerHTML;
+}
+
+function inlineMarkdown(value) {
+  let html = escapeHtml(value);
+  const code = [];
+  html = html.replace(/`([^`]+)`/g, (_, content) => `<code data-code="${code.push(content) - 1}"></code>`);
+  html = html.replace(/\[([^\]]+)\]\(([^\s)]+)(?:\s+&quot;[^&]*&quot;)?\)/g, (_, label, url) => {
+    const safeUrl = /^(?:https?:|mailto:|\/|#)/i.test(url) ? url : "#";
+    return `<a href="${safeUrl}">${label}</a>`;
+  });
+  html = html.replace(/\*\*\*([^*]+)\*\*\*/g, "<strong><em>$1</em></strong>");
+  html = html.replace(/___([^_]+)___/g, "<strong><em>$1</em></strong>");
+  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/__([^_]+)__/g, "<strong>$1</strong>");
+  html = html.replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>");
+  html = html.replace(/(^|[^_])_([^_\n]+)_/g, "$1<em>$2</em>");
+  html = html.replace(/ {2,}$|\\$/g, "<br>");
+  return html.replace(/<code data-code="(\d+)"><\/code>/g, (_, index) => `<code>${code[Number(index)]}</code>`);
+}
+
+function markdownToHtml(markdown) {
+  const lines = String(markdown).replace(/\r\n/g, "\n").split("\n");
+  const output = [];
+  for (let index = 0; index < lines.length;) {
+    const line = lines[index];
+    if (!line.trim()) { index += 1; continue; }
+    const heading = line.match(/^(#{1,3})\s+(.+)$/);
+    if (heading) { const level = heading[1].length; output.push(`<h${level}>${inlineMarkdown(heading[2])}</h${level}>`); index += 1; continue; }
+    if (/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line)) { output.push("<hr>"); index += 1; continue; }
+    if (/^>\s?/.test(line)) {
+      const quote = [];
+      while (index < lines.length && /^>\s?/.test(lines[index])) quote.push(lines[index++].replace(/^>\s?/, ""));
+      output.push(`<blockquote>${inlineMarkdown(quote.join(" "))}</blockquote>`); continue;
+    }
+    const unordered = line.match(/^\s*[-+*]\s+(.+)$/);
+    const ordered = line.match(/^\s*\d+[.)]\s+(.+)$/);
+    if (unordered || ordered) {
+      const tag = unordered ? "ul" : "ol";
+      const matcher = unordered ? /^\s*[-+*]\s+(.+)$/ : /^\s*\d+[.)]\s+(.+)$/;
+      const items = [];
+      while (index < lines.length) { const item = lines[index].match(matcher); if (!item) break; items.push(`<li>${inlineMarkdown(item[1])}</li>`); index += 1; }
+      output.push(`<${tag}>${items.join("")}</${tag}>`); continue;
+    }
+    const paragraph = [line];
+    index += 1;
+    while (index < lines.length && lines[index].trim() && !/^(?:#{1,3}\s+|>\s?|\s*[-+*]\s+|\s*\d+[.)]\s+)/.test(lines[index])) paragraph.push(lines[index++]);
+    output.push(`<p>${paragraph.map(inlineMarkdown).join(" ")}</p>`);
+  }
+  return output.join("");
+}
+
+function inlineHtmlToMarkdown(node) {
+  if (node.nodeType === Node.TEXT_NODE) return node.textContent;
+  if (node.nodeType !== Node.ELEMENT_NODE) return "";
+  const content = [...node.childNodes].map(inlineHtmlToMarkdown).join("");
+  if (node.tagName === "STRONG" || node.tagName === "B") return `**${content}**`;
+  if (node.tagName === "EM" || node.tagName === "I") return `*${content}*`;
+  if (node.tagName === "CODE") return `\`${content}\``;
+  if (node.tagName === "A") return `[${content}](${node.getAttribute("href") || "#"})`;
+  if (node.tagName === "BR") return "\\\n";
+  return content;
+}
+
+function htmlToMarkdown(element) {
+  const blocks = [];
+  for (const node of element.childNodes) {
+    if (node.nodeType === Node.TEXT_NODE) { if (node.textContent.trim()) blocks.push(node.textContent.trim()); continue; }
+    if (node.nodeType !== Node.ELEMENT_NODE) continue;
+    const tag = node.tagName;
+    let markdown = "";
+    if (/^H[1-3]$/.test(tag)) markdown = `${"#".repeat(Number(tag[1]))} ${inlineHtmlToMarkdown(node)}`;
+    else if (tag === "BLOCKQUOTE") markdown = inlineHtmlToMarkdown(node).split("\n").map(line => `> ${line}`).join("\n");
+    else if (tag === "UL" || tag === "OL") markdown = [...node.children].map((item, index) => `${tag === "OL" ? `${index + 1}.` : "-"} ${inlineHtmlToMarkdown(item)}`).join("\n");
+    else if (tag === "HR") markdown = "---";
+    else markdown = inlineHtmlToMarkdown(node);
+    if (markdown.trim()) blocks.push(markdown.trim());
+  }
+  const markdown = blocks.join("\n\n").replace(/\u00a0/g, " ").replace(/\n{3,}/g, "\n\n");
+  return markdown ? `${markdown}\n` : "";
+}
+
 function articleFromForm() {
   const dateInput = $("#article-date");
   const date = !state.isNew && dateInput.value === dateInput.dataset.originalInput ? state.current.date : dateFromInput(dateInput.value);
@@ -124,7 +212,13 @@ function isHomepageDirty() {
   return state.homepage && JSON.stringify(homepageFromForm()) !== state.homepageBaseline;
 }
 
-function hasUnsavedChanges() { return isArticleDirty() || isHomepageDirty(); }
+function aboutFromForm() { return { body: $("#about-body").value.replace(/\r\n/g, "\n") }; }
+
+function isAboutDirty() {
+  return state.about && JSON.stringify(aboutFromForm()) !== state.aboutBaseline;
+}
+
+function hasUnsavedChanges() { return isArticleDirty() || isHomepageDirty() || isAboutDirty(); }
 
 function confirmDiscard() {
   return !hasUnsavedChanges() || window.confirm("Je hebt niet-opgeslagen wijzigingen. Wil je die weggooien?");
@@ -211,6 +305,7 @@ function fillArticleForm(article, isNew = false) {
   $("#article-summary").value = article.summary || "";
   $("#article-description").value = article.description || "";
   $("#article-body").value = article.body || "";
+  $("#article-rich-body").innerHTML = markdownToHtml(article.body || "");
   $("#article-tags").value = (article.tags || []).join(", ");
   $("#article-categories").value = (article.categories || []).join(", ");
   $("#article-slug").value = article.slug || "";
@@ -224,6 +319,7 @@ function fillArticleForm(article, isNew = false) {
   $("#cover-caption").value = article.cover?.caption || "";
   $("#cover-relative").checked = Boolean(article.cover?.relative);
   $("#cover-hidden").checked = Boolean(article.cover?.hiddenInList);
+  $("#cover-card").hidden = isNew;
   $("#delete-article").hidden = isNew;
   $("#editor-path").textContent = isNew ? "Nieuw bestand in content/snippets" : article.path;
   $("#article-error").hidden = true;
@@ -258,7 +354,7 @@ function clearFieldErrors(form) {
 }
 
 function fieldError(field, message) {
-  const inputMap = { title: "#article-title", summary: "#article-summary", date: "#article-date", slug: "#article-slug", tags: "#article-tags", body: "#article-body", logo: "#homepage-logo", intro: "#homepage-intro" };
+  const inputMap = { title: "#article-title", summary: "#article-summary", date: "#article-date", slug: "#article-slug", tags: "#article-tags", body: "#article-rich-body", logo: "#homepage-logo", intro: "#homepage-intro", aboutBody: "#about-rich-body" };
   const input = $(inputMap[field]);
   if (input) input.setAttribute("aria-invalid", "true");
   const messageElement = document.querySelector(`[data-error-for="${field}"]`);
@@ -304,6 +400,7 @@ async function saveArticle() {
     state.isNew = false;
     state.slugTouched = true;
     $("#article-slug").disabled = true;
+    $("#cover-card").hidden = false;
     $("#delete-article").hidden = false;
     $("#editor-path").textContent = data.path;
     $("#article-date").dataset.originalInput = $("#article-date").value;
@@ -397,6 +494,117 @@ async function saveHomepage() {
   } finally { setBusy(button, false); }
 }
 
+async function loadAbout() {
+  if (state.about) return;
+  try {
+    const data = await api("/api/cms/about");
+    state.about = data.about;
+    $("#about-body").value = data.about.body;
+    $("#about-rich-body").innerHTML = markdownToHtml(data.about.body);
+    state.aboutBaseline = JSON.stringify(aboutFromForm());
+    updateAboutMeta();
+  } catch (error) { $("#about-error").textContent = error.message; $("#about-error").hidden = false; }
+}
+
+function updateAboutMeta() {
+  const dirty = isAboutDirty();
+  const saveState = $("#about-save-state");
+  saveState.textContent = dirty ? "Niet opgeslagen" : "Geen wijzigingen";
+  saveState.className = `save-state${dirty ? " dirty" : ""}`;
+}
+
+async function saveAbout() {
+  const about = aboutFromForm();
+  if (!about.body.trim()) {
+    fieldError("aboutBody", "Vul de inhoud van de pagina in.");
+    $("#about-error").textContent = "Controleer het gemarkeerde veld."; $("#about-error").hidden = false; return;
+  }
+  const button = $("#about-form button[type='submit']");
+  setBusy(button, true, "Opslaan…");
+  try {
+    const data = await api("/api/cms/about", { method: "POST", mutation: true, body: { sha: state.about.sha, about } });
+    state.about = { ...state.about, ...about, sha: data.sha };
+    state.aboutBaseline = JSON.stringify(about);
+    $("#about-error").hidden = true;
+    clearFieldErrors($("#about-form"));
+    updateAboutMeta();
+    toast(data.unchanged ? "Er waren geen wijzigingen om op te slaan." : "De pagina Over mij is opgeslagen. De website wordt opnieuw opgebouwd.");
+  } catch (error) {
+    if (error.details?.field) fieldError(error.details.field, error.message);
+    $("#about-error").textContent = error.message; $("#about-error").hidden = false;
+  } finally { setBusy(button, false); }
+}
+
+function formatNumber(value) { return new Intl.NumberFormat("nl-NL").format(value || 0); }
+
+function formatBytes(value) {
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let amount = Number(value) || 0;
+  let unit = 0;
+  while (amount >= 1000 && unit < units.length - 1) { amount /= 1000; unit += 1; }
+  return `${new Intl.NumberFormat("nl-NL", { maximumFractionDigits: unit ? 1 : 0 }).format(amount)} ${units[unit]}`;
+}
+
+function countryName(code) {
+  if (!/^[A-Z]{2}$/i.test(code)) return code;
+  try { return new Intl.DisplayNames(["nl"], { type: "region" }).of(code.toUpperCase()) || code; }
+  catch { return code; }
+}
+
+function renderRanking(selector, items, labelFormatter = value => value) {
+  const list = $(selector);
+  list.replaceChildren();
+  if (!items.length) { const empty = document.createElement("li"); empty.className = "empty-ranking"; empty.textContent = "Geen gegevens in deze periode."; list.append(empty); return; }
+  for (const item of items) {
+    const row = document.createElement("li");
+    const label = document.createElement("span"); label.textContent = labelFormatter(item.label);
+    const value = document.createElement("strong"); value.textContent = formatNumber(item.value);
+    row.append(label, value); list.append(row);
+  }
+}
+
+function renderStatistics(statistics) {
+  $("#stat-visits").textContent = formatNumber(statistics.totals.visits);
+  $("#stat-requests").textContent = formatNumber(statistics.totals.requests);
+  $("#stat-bandwidth").textContent = formatBytes(statistics.totals.bandwidth);
+  const start = formatDisplayDate(statistics.since);
+  const end = formatDisplayDate(statistics.until);
+  $("#statistics-range").textContent = `${start} – ${end}`;
+  const chart = $("#statistics-chart");
+  chart.replaceChildren();
+  const maximum = Math.max(1, ...statistics.daily.map(day => day.visits));
+  const dateFormatter = new Intl.DateTimeFormat("nl-NL", { day: "numeric", month: "short", timeZone: "UTC" });
+  for (const day of statistics.daily) {
+    const column = document.createElement("div"); column.className = "chart-column";
+    const wrap = document.createElement("div"); wrap.className = "chart-bar-wrap";
+    const bar = document.createElement("div"); bar.className = "chart-bar"; bar.style.height = `${Math.max(2, day.visits / maximum * 100)}%`; bar.title = `${formatDisplayDate(day.date)}: ${formatNumber(day.visits)} bezoeken`;
+    const date = document.createElement("time"); date.dateTime = day.date; date.textContent = dateFormatter.format(new Date(`${day.date}T00:00:00Z`));
+    wrap.append(bar); column.append(wrap, date); chart.append(column);
+  }
+  chart.setAttribute("aria-label", `Bezoeken per dag van ${start} tot ${end}`);
+  renderRanking("#statistics-pages", statistics.pages);
+  renderRanking("#statistics-countries", statistics.countries, countryName);
+}
+
+async function loadStatistics(force = false) {
+  const period = Number($("#statistics-period").value);
+  if (!force && state.statisticsPeriod === period) return;
+  const button = $("#refresh-statistics");
+  setBusy(button, true, "Laden…");
+  $("#statistics-loading").hidden = false;
+  $("#statistics-dashboard").hidden = true;
+  $("#statistics-error").hidden = true;
+  try {
+    const data = await api(`/api/cms/statistics?days=${period}`);
+    state.statisticsPeriod = period;
+    renderStatistics(data.statistics);
+    $("#statistics-dashboard").hidden = false;
+  } catch (error) {
+    $("#statistics-error").textContent = error.message;
+    $("#statistics-error").hidden = false;
+  } finally { $("#statistics-loading").hidden = true; setBusy(button, false); }
+}
+
 async function loadMedia() {
   try {
     const data = await api("/api/cms/media");
@@ -437,6 +645,7 @@ async function uploadImage(file, targetInput) {
 async function switchSection(section) {
   const leavingArticles = section !== "articles" && !$("#article-editor").hidden;
   const leavingHomepage = section !== "homepage" && isHomepageDirty();
+  const leavingAbout = section !== "about" && isAboutDirty();
   if (!confirmDiscard()) return;
   if (leavingArticles) {
     $("#article-editor").hidden = true;
@@ -450,22 +659,28 @@ async function switchSection(section) {
     state.homepageBaseline = JSON.stringify(homepageFromForm());
     updateHomepageMeta();
   }
+  if (leavingAbout && state.about) {
+    $("#about-body").value = state.about.body;
+    $("#about-rich-body").innerHTML = markdownToHtml(state.about.body);
+    state.aboutBaseline = JSON.stringify(aboutFromForm());
+    updateAboutMeta();
+  }
   $$(".nav-item").forEach(button => button.classList.toggle("active", button.dataset.section === section));
   $("#articles-section").hidden = section !== "articles";
   $("#homepage-section").hidden = section !== "homepage";
+  $("#about-section").hidden = section !== "about";
+  $("#statistics-section").hidden = section !== "statistics";
   if (section === "homepage") await loadHomepage();
+  if (section === "about") await loadAbout();
+  if (section === "statistics") await loadStatistics();
   window.scrollTo({ top: 0 });
 }
 
-function applyMarkdown(pattern) {
-  const textarea = $("#article-body");
-  const [before, after = ""] = pattern.split("|");
-  const start = textarea.selectionStart;
-  const end = textarea.selectionEnd;
-  const selected = textarea.value.slice(start, end);
-  textarea.setRangeText(`${before}${selected}${after}`, start, end, "end");
-  textarea.focus();
-  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+function runEditorCommand(editorId, command, value = null) {
+  const editor = document.getElementById(editorId);
+  editor.focus();
+  document.execCommand(command, false, value);
+  editor.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
 async function start() {
@@ -509,13 +724,26 @@ $("#article-editor").addEventListener("input", event => {
 $("#publish-toggle").addEventListener("click", togglePublish);
 $("#delete-article").addEventListener("click", () => { $("#delete-copy").textContent = `“${state.current.title}” wordt van de website verwijderd.`; $("#delete-dialog").showModal(); });
 $("#confirm-delete").addEventListener("click", event => { event.preventDefault(); deleteCurrentArticle(); });
-$$("[data-markdown]").forEach(button => button.addEventListener("click", () => applyMarkdown(button.dataset.markdown)));
+$$(".rich-text-editor").forEach(editor => editor.addEventListener("input", event => {
+  const textarea = event.currentTarget.id === "article-rich-body" ? $("#article-body") : $("#about-body");
+  textarea.value = htmlToMarkdown(event.currentTarget);
+  if (event.currentTarget.id === "about-rich-body") updateAboutMeta();
+}));
+$$("[data-command]").forEach(button => button.addEventListener("click", () => runEditorCommand(button.dataset.editor, button.dataset.command)));
+$$("[data-block]").forEach(button => button.addEventListener("click", () => runEditorCommand(button.dataset.editor, "formatBlock", button.dataset.block)));
+$$("[data-link]").forEach(button => button.addEventListener("click", () => {
+  const url = window.prompt("Naar welke URL moet de link verwijzen?", "https://");
+  if (url) runEditorCommand(button.dataset.editor, "createLink", url);
+}));
 $("#cover-library").addEventListener("change", event => { if (event.target.value) { $("#cover-image").value = event.target.value; $("#cover-image").dispatchEvent(new Event("input", { bubbles: true })); } });
 $("#homepage-library").addEventListener("change", event => { if (event.target.value) { $("#homepage-logo").value = event.target.value; $("#homepage-logo").dispatchEvent(new Event("input", { bubbles: true })); } });
 $("#cover-upload").addEventListener("change", event => uploadImage(event.target.files[0], event.target));
 $("#homepage-upload").addEventListener("change", event => uploadImage(event.target.files[0], event.target));
 $("#homepage-form").addEventListener("input", updateHomepageMeta);
 $("#homepage-form").addEventListener("submit", event => { event.preventDefault(); saveHomepage(); });
+$("#about-form").addEventListener("submit", event => { event.preventDefault(); saveAbout(); });
+$("#statistics-period").addEventListener("change", () => loadStatistics(true));
+$("#refresh-statistics").addEventListener("click", () => loadStatistics(true));
 window.addEventListener("beforeunload", event => { if (hasUnsavedChanges()) { event.preventDefault(); event.returnValue = ""; } });
 
 start().catch(error => showLogin(error.message));

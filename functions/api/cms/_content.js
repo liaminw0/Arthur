@@ -2,6 +2,7 @@ import { CmsError } from "./_http.js";
 
 export const ARTICLE_DIRECTORY = "content/snippets/";
 export const HOMEPAGE_PATH = "content/homepage.md";
+export const ABOUT_PATH = "content/over-mij.md";
 export const ARTICLE_FIELDS = ["title", "date", "draft", "tags", "summary", "description", "cover", "categories", "ShowToc"];
 
 export function articlePath(slug) {
@@ -181,4 +182,16 @@ export function updateHomepage(source, homepage) {
   if (logoBlock) lines.splice(logoBlock.start, logoBlock.end - logoBlock.start, rendered);
   else lines.push(rendered);
   return `---\n${lines.join("\n")}\n---\n${homepage.intro.replace(/^\n+/, "")}`;
+}
+
+export function parseAbout(sha, source) {
+  const document = splitMarkdown(source);
+  const parsed = parseFrontMatter(document.frontMatter);
+  return { path: ABOUT_PATH, sha, title: String(parsed.values.title || ""), body: document.body };
+}
+
+export function updateAbout(source, about) {
+  validateText(about.body, "aboutBody", 100_000, true);
+  const document = splitMarkdown(source);
+  return `---\n${document.frontMatter}\n---\n${about.body.replace(/^\n+/, "")}`;
 }
