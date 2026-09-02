@@ -1,6 +1,7 @@
 import { CmsError, envValue, errorResponse, requireSession, response } from "./_http.js";
 
 const GRAPHQL_ENDPOINT = "https://api.cloudflare.com/client/v4/graphql";
+const INTERESTING_PAGES = new Set(["/", "/nieuwsbrief/", "/snippets/", "/over-mij/"]);
 
 function providerError(errors) {
   const message = (errors || []).map(error => String(error?.message || "").trim()).find(Boolean);
@@ -21,12 +22,13 @@ function top(groups, dimension) {
 }
 
 export function analyticsQuery(zoneId, hostname, since, until) {
-  const filter = `filter: {datetime_geq: ${JSON.stringify(since)}, datetime_lt: ${JSON.stringify(until)}, clientRequestHTTPHost: ${JSON.stringify(hostname)}, requestSource: \"eyeball\"}`;
+  const filter = `filter: {datetime_geq: ${JSON.stringify(since)}, datetime_lt: ${JSON.stringify(until)}, clientRequestHTTPHost: ${JSON.stringify(hostname)}, requestSource: \"eyeball\", OR: [{clientRequestPath: \"/\"}, {clientRequestPath: \"/nieuwsbrief/\"}, {clientRequestPath: \"/snippets/\"}, {clientRequestPath: \"/over-mij/\"}, {clientRequestPath_like: \"/snippets/%\"}]}`;
   return `query { viewer { zones(filter: {zoneTag: ${JSON.stringify(zoneId)}}) {
-    totals: httpRequestsAdaptiveGroups(limit: 1, ${filter}) { count sum { visits edgeResponseBytes } }
-    daily: httpRequestsAdaptiveGroups(limit: 31, orderBy: [date_ASC], ${filter}) { count sum { visits } dimensions { date } }
-    pages: httpRequestsAdaptiveGroups(limit: 100, orderBy: [count_DESC], ${filter}) { count dimensions { clientRequestPath } }
-    countries: httpRequestsAdaptiveGroups(limit: 100, orderBy: [count_DESC], ${filter}) { count dimensions { clientCountryName } }
+    pageStats: httpRequestsAdaptiveGroups(limit: 1000, orderBy: [count_DESC], ${filter}) {
+      count
+      sum { visits edgeResponseBytes }
+      dimensions { date clientRequestPath clientCountryName }
+    }
   } } }`;
 }
 
@@ -39,33 +41,37 @@ export function dailyRanges(since, until) {
   return ranges;
 }
 
-function mergeDimensionGroups(zones, field, dimension) {
-  const counts = new Map();
-  for (const zone of zones) {
-    for (const group of zone?.[field] || []) {
-      const label = String(group.dimensions?.[dimension] || "Onbekend");
-      counts.set(label, (counts.get(label) || 0) + number(group.count));
-    }
-  }
-  return [...counts].map(([label, count]) => ({ count, dimensions: { [dimension]: label } }));
+export function isInterestingPage(path) {
+  return INTERESTING_PAGES.has(path) || /^\/snippets\/[a-z0-9][a-z0-9-]*\/$/.test(path);
 }
 
 export function mergeAnalyticsZones(zones) {
+  const totals = { count: 0, visits: 0, bandwidth: 0 };
   const daily = new Map();
+  const pages = new Map();
+  const countries = new Map();
   for (const zone of zones) {
-    for (const group of zone?.daily || []) {
+    for (const group of zone?.pageStats || []) {
+      const path = String(group.dimensions?.clientRequestPath || "");
+      if (!isInterestingPage(path)) continue;
       const date = String(group.dimensions?.date || "");
       const current = daily.get(date) || { count: 0, visits: 0 };
       current.count += number(group.count);
       current.visits += number(group.sum?.visits);
       daily.set(date, current);
+      totals.count += number(group.count);
+      totals.visits += number(group.sum?.visits);
+      totals.bandwidth += number(group.sum?.edgeResponseBytes);
+      pages.set(path, (pages.get(path) || 0) + number(group.count));
+      const country = String(group.dimensions?.clientCountryName || "Onbekend");
+      countries.set(country, (countries.get(country) || 0) + number(group.count));
     }
   }
   return {
-    totals: zones.flatMap(zone => zone?.totals || []),
+    totals: [{ count: totals.count, sum: { visits: totals.visits, edgeResponseBytes: totals.bandwidth } }],
     daily: [...daily].sort(([left], [right]) => left.localeCompare(right)).map(([date, values]) => ({ count: values.count, sum: { visits: values.visits }, dimensions: { date } })),
-    pages: mergeDimensionGroups(zones, "pages", "clientRequestPath"),
-    countries: mergeDimensionGroups(zones, "countries", "clientCountryName"),
+    pages: [...pages].map(([path, count]) => ({ count, dimensions: { clientRequestPath: path } })),
+    countries: [...countries].map(([country, count]) => ({ count, dimensions: { clientCountryName: country } })),
   };
 }
 

@@ -551,6 +551,14 @@ function countryName(code) {
   catch { return code; }
 }
 
+function pageName(path) {
+  const fixed = { "/": "Home", "/nieuwsbrief/": "Nieuwsbrief", "/snippets/": "Snippets", "/over-mij/": "Over mij" };
+  if (fixed[path]) return fixed[path];
+  const match = String(path).match(/^\/snippets\/([^/]+)\/$/);
+  if (!match) return path;
+  return state.articles.find(article => article.slug === match[1])?.title || match[1].replace(/-/g, " ");
+}
+
 function renderRanking(selector, items, labelFormatter = value => value) {
   const list = $(selector);
   list.replaceChildren();
@@ -582,7 +590,7 @@ function renderStatistics(statistics) {
     wrap.append(bar); column.append(wrap, date); chart.append(column);
   }
   chart.setAttribute("aria-label", `Bezoeken per dag van ${start} tot ${end}`);
-  renderRanking("#statistics-pages", statistics.pages);
+  renderRanking("#statistics-pages", statistics.pages, pageName);
   renderRanking("#statistics-countries", statistics.countries, countryName);
 }
 

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 import { articlePath, createArticle, parseAbout, parseArticle, parseHomepage, splitMarkdown, updateAbout, updateArticle, updateHomepage } from "../functions/api/cms/_content.js";
-import { analyticsQuery, dailyRanges, mergeAnalyticsZones, normalizeStatistics } from "../functions/api/cms/statistics.js";
+import { analyticsQuery, dailyRanges, isInterestingPage, mergeAnalyticsZones, normalizeStatistics } from "../functions/api/cms/statistics.js";
 
 const snippetsDirectory = new URL("../content/snippets/", import.meta.url);
 
@@ -90,8 +90,10 @@ test("Cloudflare statistics are normalized and missing days are filled", () => {
 
 test("Cloudflare statistics query uses supported adaptive dimensions and filters", () => {
   const query = analyticsQuery("zone-id", "art-hov.blog", "2026-09-01T00:00:00.000Z", "2026-09-02T12:00:00.000Z");
-  assert.match(query, /orderBy: \[date_ASC\]/);
-  assert.match(query, /dimensions \{ date \}/);
+  assert.match(query, /clientRequestPath: "\/nieuwsbrief\/"/);
+  assert.match(query, /clientRequestPath: "\/over-mij\/"/);
+  assert.match(query, /clientRequestPath_like: "\/snippets\/%"/);
+  assert.match(query, /dimensions \{ date clientRequestPath clientCountryName \}/);
   assert.doesNotMatch(query, /datetimeDay|edgeResponseContentTypeName/);
 });
 
@@ -102,24 +104,32 @@ test("Cloudflare statistics split long periods into one-day ranges", () => {
   ]);
 });
 
+test("Cloudflare statistics only count canonical public pages", () => {
+  assert.equal(isInterestingPage("/"), true);
+  assert.equal(isInterestingPage("/nieuwsbrief/"), true);
+  assert.equal(isInterestingPage("/snippets/"), true);
+  assert.equal(isInterestingPage("/over-mij/"), true);
+  assert.equal(isInterestingPage("/snippets/een-artikel/"), true);
+  assert.equal(isInterestingPage("/snippets/een-artikel/cover.jpg"), false);
+  assert.equal(isInterestingPage("/tags/"), false);
+});
+
 test("Cloudflare daily query results are merged before normalization", () => {
   const merged = mergeAnalyticsZones([
     {
-      totals: [{ count: 5, sum: { visits: 2, edgeResponseBytes: 100 } }],
-      daily: [{ count: 5, sum: { visits: 2 }, dimensions: { date: "2026-09-01" } }],
-      pages: [{ count: 3, dimensions: { clientRequestPath: "/snippets/test/" } }],
-      countries: [{ count: 4, dimensions: { clientCountryName: "NL" } }],
+      pageStats: [{ count: 5, sum: { visits: 2, edgeResponseBytes: 100 }, dimensions: { date: "2026-09-01", clientRequestPath: "/snippets/test/", clientCountryName: "NL" } }],
     },
     {
-      totals: [{ count: 7, sum: { visits: 3, edgeResponseBytes: 200 } }],
-      daily: [{ count: 7, sum: { visits: 3 }, dimensions: { date: "2026-09-02" } }],
-      pages: [{ count: 4, dimensions: { clientRequestPath: "/snippets/test/" } }],
-      countries: [{ count: 2, dimensions: { clientCountryName: "NL" } }, { count: 3, dimensions: { clientCountryName: "BE" } }],
+      pageStats: [
+        { count: 4, sum: { visits: 1, edgeResponseBytes: 125 }, dimensions: { date: "2026-09-02", clientRequestPath: "/snippets/test/", clientCountryName: "NL" } },
+        { count: 3, sum: { visits: 2, edgeResponseBytes: 75 }, dimensions: { date: "2026-09-02", clientRequestPath: "/", clientCountryName: "BE" } },
+        { count: 50, sum: { visits: 10, edgeResponseBytes: 5000 }, dimensions: { date: "2026-09-02", clientRequestPath: "/snippets/test/cover.jpg", clientCountryName: "NL" } },
+      ],
     },
   ]);
   const statistics = normalizeStatistics(merged, 2, "2026-09-01T00:00:00.000Z", "2026-09-02T12:30:00.000Z");
   assert.deepEqual(statistics.totals, { visits: 5, requests: 12, bandwidth: 300 });
   assert.deepEqual(statistics.daily, [{ date: "2026-09-01", visits: 2, requests: 5 }, { date: "2026-09-02", visits: 3, requests: 7 }]);
-  assert.deepEqual(statistics.pages, [{ label: "/snippets/test/", value: 7 }]);
-  assert.deepEqual(statistics.countries, [{ label: "NL", value: 6 }, { label: "BE", value: 3 }]);
+  assert.deepEqual(statistics.pages, [{ label: "/snippets/test/", value: 9 }, { label: "/", value: 3 }]);
+  assert.deepEqual(statistics.countries, [{ label: "NL", value: 9 }, { label: "BE", value: 3 }]);
 });
