@@ -2,6 +2,11 @@ import { CmsError, envValue, errorResponse, requireSession, response } from "./_
 
 const GRAPHQL_ENDPOINT = "https://api.cloudflare.com/client/v4/graphql";
 
+function providerError(errors) {
+  const message = (errors || []).map(error => String(error?.message || "").trim()).find(Boolean);
+  return message ? message.replace(/\s+/g, " ").slice(0, 400) : "";
+}
+
 function number(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
@@ -59,11 +64,17 @@ export async function onRequestGet(context) {
     const zoneId = envValue(context.env, "CLOUDFLARE_ZONE_ID");
     const hostname = String(context.env.CLOUDFLARE_SITE_HOST || "art-hov.blog");
     const result = await fetch(GRAPHQL_ENDPOINT, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "application/json" }, body: JSON.stringify({ query: analyticsQuery(zoneId, hostname, since, until) }) });
-    if (!result.ok) throw new CmsError("Cloudflare-statistieken konden niet worden opgehaald.", 502, "analytics_error");
+    if (!result.ok) {
+      let message = "";
+      try { message = providerError((await result.clone().json()).errors); } catch { /* Cloudflare did not return JSON */ }
+      console.error("Cloudflare Analytics HTTP error", { status: result.status, message });
+      throw new CmsError(`Cloudflare-statistieken konden niet worden opgehaald (HTTP ${result.status})${message ? `: ${message}` : "."}`, 424, "analytics_error");
+    }
     const data = await result.json();
     if (data.errors?.length) {
+      const message = providerError(data.errors);
       console.error("Cloudflare Analytics error", data.errors.map(error => error.message));
-      throw new CmsError("Cloudflare heeft de statistiekenquery geweigerd. Controleer het token en de zone-ID.", 502, "analytics_query_error");
+      throw new CmsError(`Cloudflare heeft de statistiekenquery geweigerd${message ? `: ${message}` : "."}`, 424, "analytics_query_error");
     }
     const zone = data.data?.viewer?.zones?.[0];
     if (!zone) throw new CmsError("Cloudflare heeft geen statistieken voor deze zone teruggegeven.", 404, "analytics_not_found");
