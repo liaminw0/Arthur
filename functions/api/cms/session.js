@@ -1,2 +1,4 @@
-import { handleError, json, session } from "./_core.js";
-export async function onRequestGet(context) { try { const current = await session(context.request, context.env); return json({ ok: true, authenticated: Boolean(current), ...(current ? { csrfToken: current.csrf } : {}) }); } catch (error) { return handleError(error); } }
+import { errorResponse, sessionStatus } from "./_http.js";
+export async function onRequestGet(context) {
+  try { return await sessionStatus(context); } catch (error) { return errorResponse(error); }
+}

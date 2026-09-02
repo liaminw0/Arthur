@@ -1,2 +1,4 @@
-import { handleError, logout, requireSession } from "./_core.js";
-export async function onRequestPost(context) { try { await requireSession(context, true); return logout(context); } catch (error) { return handleError(error); } }
+import { clearSession, errorResponse, requireSession } from "./_http.js";
+export async function onRequestPost(context) {
+  try { await requireSession(context, true); return clearSession(); } catch (error) { return errorResponse(error); }
+}

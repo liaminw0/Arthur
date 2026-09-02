@@ -1,6 +1,72 @@
 <!doctype html>
-<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>art-hov beheer</title><link rel="stylesheet" href="/admin/styles.css"></head>
-<body><main class="admin">
-  <section id="login"><h1>Beheer</h1><p>Log in om de inhoud van art-hov.blog te beheren.</p><form id="login-form"><label>Wachtwoord <input type="password" name="password" required autocomplete="current-password"></label><button>Inloggen</button><p class="error" id="login-error"></p></form></section>
-  <section id="app" hidden><header><h1>Beheer</h1><button id="logout" class="quiet">Uitloggen</button></header><div class="toolbar"><button id="new">Nieuw artikel/pagina</button><button id="refresh" class="quiet">Vernieuwen</button></div><div class="layout"><aside><input id="filter" placeholder="Zoeken in inhoud"><div id="items"></div></aside><section class="editor"><form id="editor"><label>Bestandspad <input id="path" required pattern="content/.+\.md" placeholder="content/snippets/nieuw-verhaal.md"></label><div id="content-fields"><label>Front matter <small>YAML of TOML; alle bestaande en onbekende velden blijven behouden.</small><textarea id="frontmatter" rows="12" spellcheck="false"></textarea></label><label>Markdown <textarea id="body" rows="20" spellcheck="true"></textarea></label></div><label id="config-field" hidden>Site-instellingen <small>Bewerkt <code>hugo.yaml</code>: sitetitel, menu, sociale iconen/links, Buttondown en andere Hugo-instellingen.</small><textarea id="config" rows="28" spellcheck="false"></textarea></label><div class="actions"><button type="submit">Opslaan en publiceren</button><button type="button" id="delete" class="danger">Verwijderen</button></div><p id="message" role="status"></p></form></section></div></section>
-</main><script type="module" src="/admin/app.js"></script></body></html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Beheer · art-hov.blog</title>
+  <link rel="stylesheet" href="/admin/styles.css">
+</head>
+<body>
+  <main>
+    <section class="login-panel" id="login" aria-labelledby="login-title">
+      <div class="brand-mark" aria-hidden="true">a.</div><p class="eyebrow">art-hov.blog</p><h1 id="login-title">Welkom terug</h1><p class="muted">Log in om artikelen en de homepage te beheren.</p>
+      <form id="login-form" novalidate><label for="password">Wachtwoord</label><input id="password" name="password" type="password" autocomplete="current-password" required autofocus><button class="primary full" type="submit">Inloggen</button><p class="form-error" id="login-error" role="alert"></p></form>
+    </section>
+
+    <section class="cms" id="cms" hidden>
+      <header class="topbar">
+        <a class="brand" href="/admin/" aria-label="Beheer startpagina"><span class="brand-mark">a.</span><span><strong>art-hov</strong><small>Beheeromgeving</small></span></a>
+        <div class="topbar-actions"><a class="button ghost" href="/" target="_blank" rel="noopener">Bekijk website ↗</a><button class="ghost" id="logout" type="button">Uitloggen</button></div>
+      </header>
+      <div class="workspace">
+        <nav class="sidebar" aria-label="Beheeronderdelen"><button class="nav-item active" type="button" data-section="articles"><span>Artikelen</span><span class="count" id="article-count">0</span></button><button class="nav-item" type="button" data-section="homepage"><span>Homepage</span></button></nav>
+        <section class="content-area">
+          <section id="articles-section">
+            <div id="article-overview">
+              <div class="page-heading"><div><p class="eyebrow">Inhoud</p><h1>Artikelen</h1><p class="muted">Alle stukken uit <code>content/snippets</code>.</p></div><button class="primary" id="new-article" type="button">Nieuw artikel</button></div>
+              <div class="overview-tools"><label class="search-field"><span class="sr-only">Zoeken</span><input id="search" type="search" placeholder="Zoek op titel, tag of samenvatting…"></label><select id="status-filter" aria-label="Filter op status"><option value="all">Alle statussen</option><option value="published">Gepubliceerd</option><option value="draft">Concepten</option></select><button class="icon-button" id="refresh" type="button" title="Opnieuw laden" aria-label="Opnieuw laden">↻</button></div>
+              <div class="article-list" id="article-list" aria-live="polite"></div>
+            </div>
+
+            <form class="editor" id="article-editor" hidden novalidate>
+              <div class="editor-topline"><button class="back-button" id="back-to-articles" type="button">← Alle artikelen</button><div class="save-state" id="article-save-state" role="status">Geen wijzigingen</div></div>
+              <div class="editor-heading"><div><span class="status-badge" id="editor-status">Concept</span><h1 id="editor-title">Nieuw artikel</h1><p class="path-label" id="editor-path"></p></div><div class="editor-actions"><button class="ghost" id="publish-toggle" type="button">Publiceren</button><button class="primary" id="save-article" type="submit">Opslaan</button></div></div>
+              <div class="error-banner" id="article-error" role="alert" hidden></div>
+              <div class="editor-grid">
+                <div class="editor-main">
+                  <section class="card field-stack">
+                    <div class="field"><label for="article-title">Titel <span aria-hidden="true">*</span></label><input id="article-title" name="title" maxlength="200" required><small class="field-error" data-error-for="title"></small></div>
+                    <div class="field"><label for="article-summary">Samenvatting <span aria-hidden="true">*</span></label><textarea id="article-summary" name="summary" rows="3" maxlength="1000" required></textarea><div class="field-help"><span>Verschijnt in het artikeloverzicht en in zoekresultaten.</span><span id="summary-count">0 / 1000</span></div><small class="field-error" data-error-for="summary"></small></div>
+                  </section>
+                  <section class="card body-card">
+                    <div class="card-heading"><div><h2>Inhoud</h2><p>Markdown wordt door Hugo gerenderd.</p></div><div class="markdown-tools" aria-label="Markdown opmaak"><button type="button" data-markdown="**|**" title="Vet"><strong>B</strong></button><button type="button" data-markdown="*|*" title="Cursief"><em>I</em></button><button type="button" data-markdown="## |" title="Kop">H2</button><button type="button" data-markdown="[|](https://)" title="Link">↗</button></div></div>
+                    <textarea id="article-body" name="body" rows="24" spellcheck="true" aria-label="Artikelinhoud"></textarea><div class="field-help"><span id="word-count">0 woorden</span></div><small class="field-error" data-error-for="body"></small>
+                  </section>
+                  <details class="card advanced-card"><summary>Extra metadata</summary><div class="field-stack details-content"><div class="field"><label for="article-description">Beschrijving</label><textarea id="article-description" name="description" rows="2" maxlength="1000"></textarea><span class="field-help">Optionele Hugo <code>description</code>, los van de samenvatting.</span></div><label class="check-row"><input id="show-toc" name="showToc" type="checkbox"><span><strong>Inhoudsopgave tonen</strong><small>Gebruikt de bestaande <code>ShowToc</code>-sleutel.</small></span></label></div></details>
+                </div>
+                <aside class="editor-aside">
+                  <section class="card field-stack"><h2>Publicatie</h2><div class="field"><label for="article-date">Datum en tijd <span aria-hidden="true">*</span></label><input id="article-date" name="date" type="datetime-local" step="1" required><small class="field-error" data-error-for="date"></small></div><div class="field" id="slug-field"><label for="article-slug">Slug <span aria-hidden="true">*</span></label><div class="slug-input"><span>/snippets/</span><input id="article-slug" name="slug" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" required></div><small class="field-help">Het bestands- en URL-pad. Na aanmaken niet meer wijzigbaar.</small><small class="field-error" data-error-for="slug"></small></div></section>
+                  <section class="card field-stack"><h2>Indeling</h2><div class="field"><label for="article-tags">Tags</label><input id="article-tags" name="tags" placeholder="literarthur, autofictie"><small class="field-help">Scheid tags met komma’s.</small><small class="field-error" data-error-for="tags"></small></div><div class="field"><label for="article-categories">Categorieën</label><input id="article-categories" name="categories" placeholder="gedachten"><small class="field-help">Scheid categorieën met komma’s.</small></div></section>
+                  <section class="card field-stack"><div class="card-heading"><div><h2>Omslagafbeelding</h2><p>URL of bestaand uploadpad.</p></div></div><div class="cover-preview" id="cover-preview"><span>Geen afbeelding</span></div><div class="field"><label for="cover-image">Afbeelding</label><input id="cover-image" name="coverImage" placeholder="/uploads/afbeelding.jpg"></div><div class="media-actions"><select id="cover-library" aria-label="Kies geüploade afbeelding"><option value="">Kies uit uploads…</option></select><label class="button ghost upload-button">Uploaden<input id="cover-upload" type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml" hidden></label></div><div class="field"><label for="cover-alt">Alternatieve tekst</label><input id="cover-alt" name="coverAlt" maxlength="500"></div><div class="field"><label for="cover-caption">Bijschrift</label><input id="cover-caption" name="coverCaption" maxlength="500"></div><label class="check-row compact"><input id="cover-relative" name="coverRelative" type="checkbox"><span>Pad relatief aan artikel</span></label><label class="check-row compact"><input id="cover-hidden" name="coverHidden" type="checkbox"><span>Verbergen in overzicht</span></label></section>
+                  <button class="danger-text" id="delete-article" type="button">Artikel verwijderen</button>
+                </aside>
+              </div>
+            </form>
+          </section>
+
+          <section id="homepage-section" hidden>
+            <form class="homepage-form" id="homepage-form" novalidate>
+              <div class="page-heading"><div><p class="eyebrow">Website</p><h1>Homepage</h1><p class="muted">Beheert rechtstreeks <code>content/homepage.md</code>.</p></div><div class="editor-actions"><span class="save-state" id="homepage-save-state">Geen wijzigingen</span><button class="primary" type="submit">Opslaan</button></div></div><div class="error-banner" id="homepage-error" role="alert" hidden></div>
+              <div class="homepage-grid"><section class="card field-stack"><h2>Logo</h2><div class="homepage-logo-preview" id="homepage-logo-preview"><span>Geen logo</span></div><div class="field"><label for="homepage-logo">Afbeeldingspad <span aria-hidden="true">*</span></label><input id="homepage-logo" required placeholder="/uploads/art-hov_logo.png"><small class="field-error" data-error-for="logo"></small></div><div class="media-actions"><select id="homepage-library" aria-label="Kies geüploade afbeelding"><option value="">Kies uit uploads…</option></select><label class="button ghost upload-button">Uploaden<input id="homepage-upload" type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml" hidden></label></div></section><section class="card body-card"><div class="card-heading"><div><h2>Introductietekst</h2><p>Markdown onder de titel op de homepage.</p></div></div><textarea id="homepage-intro" rows="16" required spellcheck="true"></textarea><small class="field-error" data-error-for="intro"></small></section></div>
+            </form>
+          </section>
+        </section>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="delete-dialog"><form method="dialog"><h2>Artikel verwijderen?</h2><p id="delete-copy"></p><p class="muted">Dit maakt een verwijdercommit in GitHub. De wijziging is daar nog terug te draaien.</p><div class="dialog-actions"><button class="ghost" value="cancel">Annuleren</button><button class="danger" id="confirm-delete" value="confirm">Definitief verwijderen</button></div></form></dialog>
+  <script type="module" src="/admin/app.js"></script>
+</body>
+</html>
