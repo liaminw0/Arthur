@@ -78,7 +78,7 @@ test("invalid article paths are rejected", () => {
 test("Cloudflare statistics are normalized and missing days are filled", () => {
   const statistics = normalizeStatistics({
     totals: [{ count: 42, sum: { visits: 12, edgeResponseBytes: 2048 } }],
-    daily: [{ count: 20, sum: { visits: 7 }, dimensions: { datetimeDay: "2026-09-01" } }],
+    daily: [{ count: 20, sum: { visits: 7 }, dimensions: { date: "2026-09-01" } }],
     pages: [{ count: 10, dimensions: { clientRequestPath: "/snippets/test/" } }, { count: 4, dimensions: { clientRequestPath: "/cdn-cgi/test" } }],
     countries: [{ count: 8, dimensions: { clientCountryName: "NL" } }],
   }, 2, "2026-09-01T00:00:00.000Z", "2026-09-02T12:00:00.000Z");

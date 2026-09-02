@@ -20,7 +20,7 @@ function analyticsQuery(zoneId, hostname, since, until) {
   const pageFilter = `filter: {datetime_geq: ${JSON.stringify(since)}, datetime_lt: ${JSON.stringify(until)}, clientRequestHTTPHost: ${JSON.stringify(hostname)}, requestSource: \"eyeball\", edgeResponseContentTypeName: \"html\"}`;
   return `query { viewer { zones(filter: {zoneTag: ${JSON.stringify(zoneId)}}) {
     totals: httpRequestsAdaptiveGroups(limit: 1, ${filter}) { count sum { visits edgeResponseBytes } }
-    daily: httpRequestsAdaptiveGroups(limit: 31, orderBy: [datetimeDay_ASC], ${filter}) { count sum { visits } dimensions { datetimeDay } }
+    daily: httpRequestsAdaptiveGroups(limit: 31, orderBy: [date_ASC], ${filter}) { count sum { visits } dimensions { date } }
     pages: httpRequestsAdaptiveGroups(limit: 10, orderBy: [count_DESC], ${pageFilter}) { count dimensions { clientRequestPath } }
     countries: httpRequestsAdaptiveGroups(limit: 10, orderBy: [count_DESC], ${filter}) { count dimensions { clientCountryName } }
   } } }`;
@@ -28,7 +28,7 @@ function analyticsQuery(zoneId, hostname, since, until) {
 
 export function normalizeStatistics(zone, period, since, until) {
   const totals = zone?.totals || [];
-  const dailyValues = new Map((zone?.daily || []).map(group => [String(group.dimensions?.datetimeDay || ""), { visits: number(group.sum?.visits), requests: number(group.count) }]));
+  const dailyValues = new Map((zone?.daily || []).map(group => [String(group.dimensions?.date || ""), { visits: number(group.sum?.visits), requests: number(group.count) }]));
   const daily = [];
   const date = new Date(`${since.slice(0, 10)}T00:00:00Z`);
   for (let index = 0; index < period; index += 1) {
