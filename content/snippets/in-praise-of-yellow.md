@@ -3,8 +3,8 @@ title: "In Praise of Yellow"
 date: 2026-09-11T16:46:17.000+02:00
 draft: false
 tags:
-  - "Filosofie"
-  - "Estheticisme"
+  - "filosofie"
+  - "estheticisme"
 summary: "Een laudatio (lofrede) geschreven voor de Minor Rhetorics die ik nu volg over de kleur geel"
 cover:
   image: ""
