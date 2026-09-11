@@ -1,7 +1,7 @@
 ---
 title: "In Praise of Yellow"
 date: 2026-09-11T16:46:17.000+02:00
-draft: true
+draft: false
 tags:
   - "Filosofie"
   - "Estheticisme"
