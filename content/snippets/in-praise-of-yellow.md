@@ -5,7 +5,7 @@ draft: true
 tags:
   - "filosofie"
   - "estheticisme"
-summary: "Een laudatio (lofrede) geschreven voor de Minor Rhetorics die ik nu volg."
+summary: "Een laudatio (lofrede) geschreven voor de Minor Rhetorics die ik nu volg over de kleur geel"
 cover:
   image: ""
   alt: ""
