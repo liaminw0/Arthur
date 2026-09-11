@@ -3,8 +3,8 @@ title: The Greyscale Crisis
 date: 2026-03-29T12:53:00.000+02:00
 draft: false
 tags:
-  - filosofie
-  - esteticisme
+  - "filosofie"
+  - "estheticisme"
 summary: Een verouderd maar belangrijk essay uit mijn vorige blog.
 ---
 **Introductie**\
