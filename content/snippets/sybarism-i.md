@@ -1,7 +1,7 @@
 ---
 title: "Sybarism I"
 date: 2026-09-18T15:59:38.000+02:00
-draft: true
+draft: false
 tags:
   - "literarthur"
   - "gothische fictie"
