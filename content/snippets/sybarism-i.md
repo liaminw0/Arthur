@@ -16,9 +16,8 @@ cover:
 ShowToc: true
 categories: []
 ---
-**Sybarism I (2026) by Arthur Hovenkamp**
-
-As I am waiting at the front door of the apartment complex I am looking at every passer-by. I am about to have a viewing of the apartment I am planning to move into. Despite it being a viewing it is not going to be a viewing of a potential home, but a viewing of a definite home. Whether or not it is up to my standards does not matter, the availability is too scarce.
+**Sybarism I (2026) by Arthur Hovenkamp\
+**As I am waiting at the front door of the apartment complex I am looking at every passer-by. I am about to have a viewing of the apartment I am planning to move into. Despite it being a viewing it is not going to be a viewing of a potential home, but a viewing of a definite home. Whether or not it is up to my standards does not matter, the availability is too scarce.
 
 “35m² with two rooms.”
 
