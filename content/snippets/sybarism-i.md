@@ -129,7 +129,7 @@ This is not a viewing of a potential home, but a viewing of a definite home. It 
 
 I sign the contract.
 
-\
+‎
 
 A few days later I am on my way to the apartment again. This time I am going there with a rented Iveco Daily packed with my possessions. I moved out some years ago, at the exact same time the COVID-19 pandemic started. I moved into a closed down city, all alone, without chances to meet anyone. Two years later I moved back to my parents, at the exact same time the pandemic ended. I lingered for four years, to move out again now. Having moved out before has its advantages, possessing basic furniture already.
 
