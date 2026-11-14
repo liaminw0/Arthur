@@ -1,7 +1,7 @@
 ---
 title: "The Family"
 date: 2026-11-14T04:37:24.000+01:00
-draft: true
+draft: false
 tags:
   - "literarthur"
   - "filosofie"
