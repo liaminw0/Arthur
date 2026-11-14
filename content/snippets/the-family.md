@@ -33,7 +33,7 @@ say “God is non-binary.”.
 For God is
 no LORD, no Anglo-Saxon LOAF-WARD, handing out necessities and luxuries to those
 within His hall. Fighting those unwelcome, those ceorls and thralls, those earls
-of other halls. God is YHWH, “They were. They are. They will be.”.
+of other halls. God is YHWH, They who have BEEN, They who BE and will BE.
 
 “God, that
 is to say, Nature.”.
