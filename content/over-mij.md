@@ -3,7 +3,7 @@ title: "Over mij"
 description: ""
 hideMeta: true
 ---
-Mijn naam is **Art**hur** Hov**enkamp en dit is mijn **blog**!
+Mijn naam is Arthur Hovenkamp!
 
 Ik ben met mijn blog begonnen om zo een manier te hebben sommige essays en verhalen van mij te kunnen delen. Dit doe ik niet volgens een bepaald schema, maar wanneer ik er zin in heb.
 
